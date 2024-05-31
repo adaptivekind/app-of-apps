@@ -33,6 +33,12 @@ Log in to Argo CD with username admin and password from above.
 argocd login argocd.local --grpc-web
 ```
 
+Change admin password
+
+```sh
+argocd account update-password
+```
+
 Check Argo CD configuration at `~/.config/argocd/config`.
 
 Register private repository with Argo CD installation.
