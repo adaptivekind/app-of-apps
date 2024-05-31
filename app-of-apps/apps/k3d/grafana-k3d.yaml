@@ -15,6 +15,7 @@ spec:
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
   syncOptions:
     - CreateNamespace=true
