@@ -30,8 +30,10 @@ argocd admin initial-password -n argocd | head -n 1 | pbcopy
 Log in to Argo CD with username admin and password from above.
 
 ```sh
-argocd login argocd.local
+argocd login argocd.local --grpc-web
 ```
+
+Check Argo CD configuration at `~/.config/argocd/config`.
 
 Register private repository with Argo CD installation.
 
@@ -48,7 +50,7 @@ argocd repo add https://github.com/adaptivekind/app-of-apps.git \
 Apply the project
 
 ```sh
-kubectl apply -f app-of-apps/projects/project-dev.yaml
+kubectl apply -f app-of-apps/projects/project-default.yaml
 ```
 
 Check repo and projects set up
@@ -61,9 +63,9 @@ argocd proj list
 Install app of apps
 
 ```sh
-argocd app create app-of-apps-dev \
+argocd app create app-of-apps \
   --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path app-of-apps/dev \
+  --path app-of-apps/k3d \
   --dest-server https://kubernetes.default.svc
 ```
 
