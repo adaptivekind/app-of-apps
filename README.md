@@ -24,12 +24,29 @@ Log in to Argo CD with username admin and password from above.
 argocd login localhost:8080
 ```
 
-Add private repository
+Register private repository with Argo CD installation.
 
 ```sh
+export GITHUB_APP_ID=1234
+export GITHUB_APP_INSTALLATION_ID=5678
+export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
 argocd repo add https://github.com/adaptivekind/app-of-apps.git \
-  --username x
-  --password y
+  --github-app-id ${GITHUB_APP_ID} \
+  --github-app-installation-id ${GITHUB_APP_INSTALLATION_ID} \
+  --github-app-private-key-path ${GITHUB_APP_PRIVATE_KEY_PATH}
+```
+
+Apply the project
+
+```sh
+kubectl apply -f app-of-apps/projects/project-dev.yaml
+```
+
+Check repo and projects set up
+
+```sh
+argocd repo list
+argocd proj list
 ```
 
 Install app of apps

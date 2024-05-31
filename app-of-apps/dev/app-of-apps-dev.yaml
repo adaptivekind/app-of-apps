@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: default
     name: in-cluster
-  project: app-project-dev
+  project: project-dev
   source:
     path: argocd/apps/dev
     repoURL: https://github.com/adaptivekind/app-of-apps
