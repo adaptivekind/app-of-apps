@@ -14,3 +14,5 @@ spec:
     path: apps/grafana/dev
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
+  syncPolicy:
+    automated: {}

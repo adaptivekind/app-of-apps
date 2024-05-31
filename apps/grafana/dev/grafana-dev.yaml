@@ -14,3 +14,7 @@ spec:
   destination:
     name: in-cluster
     namespace: lens
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

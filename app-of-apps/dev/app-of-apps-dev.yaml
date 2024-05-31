@@ -14,3 +14,6 @@ spec:
     path: app-of-apps/apps/dev
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
