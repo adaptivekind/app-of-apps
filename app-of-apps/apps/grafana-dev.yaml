@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: lens
+    name: in-cluster
+  project: project-dev
+  source:
+    path: apps/grafana/dev
+    repoURL: https://github.com/app-of-apps
+    targetRevision: HEAD
