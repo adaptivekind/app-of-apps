@@ -7,9 +7,9 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`argocd.dev`)
+    - match: HostSNI(`argocd.local`)
       services:
         - name: argocd-server
-          port: 80
+          port: 443
   tls:
     passthrough: true

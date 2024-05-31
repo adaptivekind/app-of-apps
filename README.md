@@ -29,9 +29,9 @@ helm install argocd argo/argo-cd --namespace argocd --create-namespace
 Create and set Argo CD certificate
 
 ```sh
-openssl req -subj '/CN=argocd.dev' \
+openssl req -subj '/CN=argocd.local' \
   -new -newkey rsa:2048 -sha256 -noenc -x509 \
-  -addext "subjectAltName = DNS:argocd.dev" \
+  -addext "subjectAltName = DNS:argocd.local" \
   -CA ca.cert.pem -CAkey ca.key \
   -keyout key.pem -out cert.pem
 kubectl create -n argocd secret tls argocd-server-tls \
@@ -48,7 +48,7 @@ kubectl apply -f app-of-apps/boot/argocd-route.yaml
 Add the following to `/etc/local`
 
 ```sh
-127.0.0.1 argocd.dev
+127.0.0.1 argocd.local
 ```
 
 Test the certificate on this route.
