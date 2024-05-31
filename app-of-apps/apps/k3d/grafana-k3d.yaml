@@ -4,7 +4,7 @@ metadata:
   name: grafana
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: lens
@@ -16,3 +16,5 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated: {}
+  syncOptions:
+    - CreateNamespace=true
