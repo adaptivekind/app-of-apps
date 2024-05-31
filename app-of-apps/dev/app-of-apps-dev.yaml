@@ -11,6 +11,6 @@ spec:
     name: in-cluster
   project: project-dev
   source:
-    path: argocd/apps/dev
+    path: app-of-apps/apps/dev
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
