@@ -31,9 +31,9 @@ export GITHUB_APP_ID=1234
 export GITHUB_APP_INSTALLATION_ID=5678
 export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
 argocd repo add https://github.com/adaptivekind/app-of-apps.git \
-  --github-app-id ${GITHUB_APP_ID} \
-  --github-app-installation-id ${GITHUB_APP_INSTALLATION_ID} \
-  --github-app-private-key-path ${GITHUB_APP_PRIVATE_KEY_PATH}
+  --github-app-id $GITHUB_APP_ID \
+  --github-app-installation-id $GITHUB_APP_INSTALLATION_ID \
+  --github-app-private-key-path $GITHUB_APP_PRIVATE_KEY_PATH
 ```
 
 Apply the project
@@ -56,4 +56,13 @@ argocd app create dev \
   --repo https://github.com/adaptivekind/app-of-apps.git \
   --path app-of-apps/dev \
   --dest-server https://kubernetes.default.svc
+```
+
+## Clean up
+
+Delete the app
+
+```sh
+argocd app delete dev
+helm uninstall argo-cd -n argocd
 ```
