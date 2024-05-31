@@ -9,7 +9,6 @@ spec:
   destination:
     namespace: lens
     name: in-cluster
-  project: project-dev
   source:
     path: apps/grafana/default
     repoURL: https://github.com/adaptivekind/app-of-apps

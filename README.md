@@ -1,15 +1,24 @@
 # App of apps
 
-Bootstrap
+Bootstrap with k3d cluster.
 
 ```sh
-helm install argo-cd argo/argo-cd --namespace argocd --create-namespace
+k3d cluster create my-cluster -p "80:80@loadbalancer"
+helm repo add argo https://argoproj.github.io/argo-helm
+helm install argocd argo/argo-cd --namespace argocd --create-namespace \
+  --set "configs.params.server\.insecure=true"
 ```
 
-Tunnel through to Argo CD
+Set up Argo CD route
 
 ```sh
-kubectl port-forward service/argo-cd-argocd-server -n argocd 8080:443 &
+kubectl apply -f app-of-apps/boot/argocd-route.yaml
+```
+
+Add the following to `/etc/local`
+
+```sh
+127.0.0.1 argocd.local
 ```
 
 Get Argo CD password
@@ -21,7 +30,7 @@ argocd admin initial-password -n argocd | head -n 1 | pbcopy
 Log in to Argo CD with username admin and password from above.
 
 ```sh
-argocd login localhost:8080
+argocd login argocd.local
 ```
 
 Register private repository with Argo CD installation.
@@ -52,7 +61,7 @@ argocd proj list
 Install app of apps
 
 ```sh
-argocd app create dev \
+argocd app create app-of-apps-dev \
   --repo https://github.com/adaptivekind/app-of-apps.git \
   --path app-of-apps/dev \
   --dest-server https://kubernetes.default.svc
@@ -63,6 +72,6 @@ argocd app create dev \
 Delete the app
 
 ```sh
-argocd app delete dev
+argocd app delete app-of-apps-dev
 helm uninstall argo-cd -n argocd
 ```

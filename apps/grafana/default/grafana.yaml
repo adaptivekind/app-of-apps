@@ -1,10 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-dev
-  namespace: argocd
+  name: grafana
+  namespace: lens
 spec:
-  project: default
   source:
     chart: grafana
     repoURL: https://grafana.github.io/helm-charts

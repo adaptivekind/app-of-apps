@@ -1,0 +1,11 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-route
+spec:
+  routes:
+    - match: Host(`grafana.local`)
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
