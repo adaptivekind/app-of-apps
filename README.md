@@ -1,12 +1,42 @@
 # App of apps
 
+## Bootstrap of local
+
+Generate a local CA so we can create locally trusted certificates
+
+```sh
+openssl genrsa -out ca.key 2048
+openssl req -new -x509 -subj "/C=EN/CN=My CA" -key ca.key -out ca.cert.pem
+```
+
+And trust locally
+
+```sh
+sudo security add-trusted-cert -d -r trustRoot \
+  -k "/Library/Keychains/System.keychain" ca.cert.pem
+```
+
+## Bootstrap of cluster
+
 Bootstrap with k3d cluster.
 
 ```sh
-k3d cluster create my-cluster -p "80:80@loadbalancer"
+k3d cluster create my-cluster -p "443:443@loadbalancer"
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install argocd argo/argo-cd --namespace argocd --create-namespace \
-  --set "configs.params.server\.insecure=true"
+helm install argocd argo/argo-cd --namespace argocd --create-namespace
+```
+
+Create and set Argo CD certificate
+
+```sh
+openssl req -subj '/CN=argocd.dev' \
+  -new -newkey rsa:2048 -sha256 -noenc -x509 \
+  -addext "subjectAltName = DNS:argocd.dev" \
+  -CA ca.cert.pem -CAkey ca.key \
+  -keyout key.pem -out cert.pem
+kubectl create -n argocd secret tls argocd-server-tls \
+  --cert=./cert.pem \
+  --key=./key.pem
 ```
 
 Set up Argo CD route
@@ -18,7 +48,14 @@ kubectl apply -f app-of-apps/boot/argocd-route.yaml
 Add the following to `/etc/local`
 
 ```sh
-127.0.0.1 argocd.local
+127.0.0.1 argocd.dev
+```
+
+Test the certificate on this route.
+
+```sh
+echo | openssl s_client -showcerts -connect argocd.local:443 2>/dev/null
+curl -v https://argocd.local
 ```
 
 Get Argo CD password
