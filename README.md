@@ -1,42 +1,45 @@
 # App of apps
 
-## Bootstrap of local
+## Create certificates
 
 Generate a local CA so we can create locally trusted certificates
 
 ```sh
-openssl genrsa -out ca.key 2048
-openssl req -new -x509 -subj "/C=EN/CN=My CA" -key ca.key -out ca.cert.pem
+mkdir -p ~/local/certs
+openssl genrsa -out ~/local/certs/local-ca.key 2048
+openssl req -new -x509 -subj "/CN=Local CA" \
+  -key ~/local/certs/local-ca.key \
+  -out ~/local/certs/local-ca.crt
 ```
 
 And trust locally
 
 ```sh
 sudo security add-trusted-cert -d -r trustRoot \
-  -k "/Library/Keychains/System.keychain" ca.cert.pem
+  -k "/Library/KeyChains/System.keychain" \
+  ~/local/certs/local-ca.crt
 ```
 
-## Bootstrap of cluster
-
-Bootstrap with k3d cluster.
-
-```sh
-k3d cluster create my-cluster -p "443:443@loadbalancer"
-helm repo add argo https://argoproj.github.io/argo-helm
-helm install argocd argo/argo-cd --namespace argocd --create-namespace
-```
-
-Create and set Argo CD certificate
+Then create certificate for Argo CD
 
 ```sh
 openssl req -subj '/CN=argocd.local' \
   -new -newkey rsa:2048 -sha256 -noenc -x509 \
   -addext "subjectAltName = DNS:argocd.local" \
-  -CA ca.cert.pem -CAkey ca.key \
-  -keyout key.pem -out cert.pem
-kubectl create -n argocd secret tls argocd-server-tls \
-  --cert=./cert.pem \
-  --key=./key.pem
+  -CA ~/local/certs/local-ca.crt \
+  -CAkey ~/local/certs/local-ca.key \
+  -keyout ~/local/certs/argocd-local.key \
+  -out ~/local/certs/argocd-local.crt
+```
+
+## Bootstrap of cluster
+
+Start up Docker and bootstrap with k3d cluster.
+
+```sh
+k3d cluster create my-cluster -p "443:443@loadbalancer"
+helm repo add argo https://argoproj.github.io/argo-helm
+helm install argocd argo/argo-cd --namespace argocd --create-namespace
 ```
 
 Set up Argo CD route
@@ -45,22 +48,24 @@ Set up Argo CD route
 kubectl apply -f app-of-apps/boot/argocd-route.yaml
 ```
 
-Add the following to `/etc/local`
+Add the following to `/etc/hosts`
 
 ```sh
 127.0.0.1 argocd.local
 ```
 
-Test the certificate on this route.
+Set Argo CD certificate
 
 ```sh
-echo | openssl s_client -showcerts -connect argocd.local:443 2>/dev/null
-curl -v https://argocd.local
+kubectl create -n argocd secret tls argocd-server-tls \
+  --cert=$HOME/local/certs/argocd-local.crt \
+  --key=$HOME/local/certs/argocd-local.key
 ```
 
 Get Argo CD password
 
 ```sh
+brew install argocd
 argocd admin initial-password -n argocd | head -n 1 | pbcopy
 ```
 
@@ -76,9 +81,11 @@ Change admin password
 argocd account update-password
 ```
 
-Check Argo CD configuration at `~/.config/argocd/config`.
+And log in at <https://argocd.local>
 
-Register private repository with Argo CD installation.
+## Set up repository
+
+Register this private repository with Argo CD installation.
 
 ```sh
 export GITHUB_APP_ID=1234
