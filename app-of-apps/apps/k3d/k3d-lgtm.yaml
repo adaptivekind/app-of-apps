@@ -1,21 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: k3d-lgtm
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: lens
+    namespace: default
     name: in-cluster
   project: project-default
   source:
-    path: apps/grafana/default
+    path: app-of-apps/apps/lgtm
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
-    syncOptions:
-      - CreateNamespace=true

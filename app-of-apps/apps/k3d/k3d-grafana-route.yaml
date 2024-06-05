@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: grafana-route
+  name: k3d-grafana-route
   namespace: lens
 spec:
   routes:
