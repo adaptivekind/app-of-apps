@@ -143,7 +143,7 @@ kubectl get secret grafana -n lens -o jsonpath="{.data.admin-password}" |
   base64 --decode | pbcopy
 ```
 
-And log in to Grafana at <https://grafana.local/>
+Grafana at <https://grafana.local/> and change password.
 
 ## Clean up
 
