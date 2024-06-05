@@ -1,6 +1,6 @@
 # App of apps
 
-## Create certificates
+## Create certificates and register hosts
 
 Generate a local CA so we can create locally trusted certificates
 
@@ -20,7 +20,7 @@ sudo security add-trusted-cert -d -r trustRoot \
   ~/local/certs/local-ca.crt
 ```
 
-Then create certificate for Argo CD
+Then create certificate for Argo CD and Grafana
 
 ```sh
 openssl req -subj '/CN=argocd.local' \
@@ -30,6 +30,20 @@ openssl req -subj '/CN=argocd.local' \
   -CAkey ~/local/certs/local-ca.key \
   -keyout ~/local/certs/argocd-local.key \
   -out ~/local/certs/argocd-local.crt
+openssl req -subj '/CN=grafana.local' \
+  -new -newkey rsa:2048 -sha256 -noenc -x509 \
+  -addext "subjectAltName = DNS:grafana.local" \
+  -CA ~/local/certs/local-ca.crt \
+  -CAkey ~/local/certs/local-ca.key \
+  -keyout ~/local/certs/grafana-local.key \
+  -out ~/local/certs/grafana-local.crt
+```
+
+Add the following to `/etc/hosts`
+
+```sh
+127.0.0.1 argocd.local
+127.0.0.1 grafana.local
 ```
 
 ## Bootstrap of cluster
@@ -46,12 +60,6 @@ Set up Argo CD route
 
 ```sh
 kubectl apply -f app-of-apps/boot/argocd-route.yaml
-```
-
-Add the following to `/etc/hosts`
-
-```sh
-127.0.0.1 argocd.local
 ```
 
 Set Argo CD certificate
@@ -114,9 +122,18 @@ Install app of apps
 
 ```sh
 argocd app create app-of-apps \
+  --sync-policy automated --sync-option Prune=true \
   --repo https://github.com/adaptivekind/app-of-apps.git \
   --path app-of-apps/k3d \
   --dest-server https://kubernetes.default.svc
+```
+
+Set Grafana TLS secret
+
+```sh
+kubectl create -n lens secret tls grafana-server-tls \
+  --cert=$HOME/local/certs/grafana-local.crt \
+  --key=$HOME/local/certs/grafana-local.key
 ```
 
 ## Clean up
@@ -124,6 +141,6 @@ argocd app create app-of-apps \
 Delete the app
 
 ```sh
-argocd app delete app-of-apps-dev
+argocd app delete app-of-apps
 helm uninstall argo-cd -n argocd
 ```
