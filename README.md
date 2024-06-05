@@ -136,6 +136,15 @@ kubectl create -n lens secret tls grafana-server-tls \
   --key=$HOME/local/certs/grafana-local.key
 ```
 
+Get Grafana admin password
+
+```sh
+kubectl get secret grafana -n lens -o jsonpath="{.data.admin-password}" |
+  base64 --decode | pbcopy
+```
+
+And log in to Grafana at <https://grafana.local/>
+
 ## Clean up
 
 Delete the app

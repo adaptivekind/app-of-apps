@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-install
+  namespace: argocd
+spec:
+  source:
+    chart: loki
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: "*"
+    helm:
+      releaseName: loki
+      valueFiles:
+        - values.yaml
+  project: project-default
+  destination:
+    name: in-cluster
+    namespace: lens
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
