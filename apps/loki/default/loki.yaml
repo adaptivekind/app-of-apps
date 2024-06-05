@@ -4,14 +4,17 @@ metadata:
   name: loki-install
   namespace: argocd
 spec:
-  source:
-    chart: loki
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: "*"
-    helm:
-      releaseName: loki
-      valueFiles:
-        - values.yaml
+  sources:
+    - chart: loki
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: "*"
+      helm:
+        releaseName: loki
+        valueFiles:
+          - $values/apps/loki/default/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
   project: project-default
   destination:
     name: in-cluster
