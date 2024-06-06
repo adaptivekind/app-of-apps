@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-install
+  name: prometheus
   namespace: argocd
 spec:
   sources:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki-install
+  name: loki
   namespace: argocd
 spec:
   sources:
