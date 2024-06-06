@@ -156,6 +156,11 @@ kubectl get secret grafana -n lens -o jsonpath="{.data.admin-password}" |
 
 Grafana at <https://grafana.local/> and change password.
 
+Add Prometheus and Loki data source
+
+- <http://prometheus-server.lens.svc.cluster.local>
+- <http://loki.lens.svc.cluster.local:3100>
+
 ## Clean up
 
 Delete the app
