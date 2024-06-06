@@ -117,9 +117,6 @@ And log in at <https://argocd.local>
 Register this private repository with Argo CD installation.
 
 ```sh
-export GITHUB_APP_ID=1234
-export GITHUB_APP_INSTALLATION_ID=5678
-export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
 argocd repo add https://github.com/adaptivekind/app-of-apps.git \
   --github-app-id $GITHUB_APP_ID \
   --github-app-installation-id $GITHUB_APP_INSTALLATION_ID \
