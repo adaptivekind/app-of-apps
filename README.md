@@ -150,9 +150,8 @@ kubectl create -n lens secret tls grafana-server-tls \
 Set Grafana password
 
 ```sh
-echo $GRAFANA_PASSWORD |
-  kubectl create -n lens secret generic grafana-password \
-  --from-file=admin-password=/dev/stdin                  \
+kubectl create -n lens secret generic grafana-password \
+  --from-literal=admin-password=$GRAFANA_PASSWORD         \
   --from-literal=admin-user=admin
 ```
 
