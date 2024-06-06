@@ -1,6 +1,6 @@
 config:
   clients:
-    - url: http://loki.lens.svc.cluster.local:3100/loki/api/v1/push
+    - url: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
 relabel_configs:
   - source_labels: ['__meta_kubernetes_pod_node_name']
     target_label: '__host__'

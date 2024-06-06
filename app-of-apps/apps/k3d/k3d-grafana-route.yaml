@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: k3d-grafana-route
-  namespace: lens
+  namespace: monitoring
 spec:
   routes:
     - match: Host(`grafana.local`)

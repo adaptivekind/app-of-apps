@@ -142,7 +142,7 @@ argocd app create app-of-apps \
 Set Grafana TLS secret
 
 ```sh
-kubectl create -n lens secret tls grafana-server-tls \
+kubectl create -n monitoring secret tls grafana-server-tls \
   --cert=$HOME/local/certs/grafana-local.crt \
   --key=$HOME/local/certs/grafana-local.key
 ```
@@ -150,7 +150,7 @@ kubectl create -n lens secret tls grafana-server-tls \
 Set Grafana password
 
 ```sh
-kubectl create -n lens secret generic grafana-password \
+kubectl create -n monitoring secret generic grafana-password \
   --from-literal=admin-password=$GRAFANA_PASSWORD         \
   --from-literal=admin-user=admin
 ```
@@ -159,8 +159,8 @@ Grafana at <https://grafana.local/>.
 
 Add Prometheus and Loki data source
 
-- <http://prometheus-server.lens.svc.cluster.local>
-- <http://loki.lens.svc.cluster.local:3100>
+- <http://prometheus-server.monitoring.svc.cluster.local>
+- <http://loki.monitoring.svc.cluster.local:3100>
 
 ## Clean up
 

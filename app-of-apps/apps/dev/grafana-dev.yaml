@@ -7,7 +7,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: lens
+    namespace: monitoring
     name: in-cluster
   project: project-default
   source:

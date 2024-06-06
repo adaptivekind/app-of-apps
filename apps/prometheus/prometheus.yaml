@@ -13,7 +13,7 @@ spec:
   project: project-default
   destination:
     name: in-cluster
-    namespace: lens
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
