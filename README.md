@@ -46,13 +46,35 @@ Add the following to `/etc/hosts`
 127.0.0.1 grafana.local
 ```
 
+## Installation pre-requisites
+
+```sh
+helm repo add argo https://argoproj.github.io/argo-helm
+brew install argocd
+brew install direnv
+```
+
+In project directory:
+
+```sh
+direnv allow
+```
+
+Create `.envrc` file in current folder with the GitHub app details set.
+
+```sh
+export GITHUB_APP_ID=1234
+export GITHUB_APP_INSTALLATION_ID=5678
+export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
+```
+
 ## Bootstrap of cluster
 
 Start up Docker and bootstrap with k3d cluster.
 
 ```sh
 k3d cluster create my-cluster -p "443:443@loadbalancer"
-helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update
 helm install argocd argo/argo-cd --namespace argocd --create-namespace
 ```
 
@@ -73,14 +95,13 @@ kubectl create -n argocd secret tls argocd-server-tls \
 Get Argo CD password
 
 ```sh
-brew install argocd
 argocd admin initial-password -n argocd | head -n 1 | pbcopy
 ```
 
 Log in to Argo CD with username admin and password from above.
 
 ```sh
-argocd login argocd.local --grpc-web
+argocd login --username admin argocd.local --grpc-web
 ```
 
 Change admin password
