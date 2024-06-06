@@ -1,3 +1,5 @@
+admin:
+  existingSecret: grafana-password
 # Provision grafana-dashboards-kubernetes
 dashboardProviders:
   dashboardproviders.yaml:

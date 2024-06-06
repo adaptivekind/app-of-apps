@@ -147,14 +147,16 @@ kubectl create -n lens secret tls grafana-server-tls \
   --key=$HOME/local/certs/grafana-local.key
 ```
 
-Get Grafana admin password
+Set Grafana password
 
 ```sh
-kubectl get secret grafana -n lens -o jsonpath="{.data.admin-password}" |
-  base64 --decode | pbcopy
+echo $GRAFANA_PASSWORD |
+  kubectl create -n lens secret generic grafana-password \
+  --from-file=admin-password=/dev/stdin                  \
+  --from-literal=admin-user=admin
 ```
 
-Grafana at <https://grafana.local/> and change password.
+Grafana at <https://grafana.local/>.
 
 Add Prometheus and Loki data source
 
