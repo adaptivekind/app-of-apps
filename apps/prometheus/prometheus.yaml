@@ -10,11 +10,6 @@ spec:
       targetRevision: "*"
       helm:
         releaseName: prometheus
-        valueFiles:
-          - $values/apps/prometheus/values.yaml
-    - repoURL: https://github.com/adaptivekind/app-of-apps
-      targetRevision: HEAD
-      ref: values
   project: project-default
   destination:
     name: in-cluster
