@@ -5,11 +5,16 @@ metadata:
   namespace: argocd
 spec:
   source:
-    chart: grafana
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: "*"
-    helm:
-      releaseName: grafana
+    - chart: grafana
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: "*"
+      helm:
+        releaseName: grafana
+        valueFiles:
+          - $values/apps/grafana/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
   project: project-default
   destination:
     name: in-cluster
