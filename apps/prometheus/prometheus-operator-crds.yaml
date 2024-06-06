@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator-crds
+  namespace: argocd
+spec:
+  sources:
+    - chart: prometheus-operator-crds
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: "*"
+      helm:
+        releaseName: prometheus-operator-crds
+  project: project-default
+  destination:
+    name: in-cluster
+    namespace: lens
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
