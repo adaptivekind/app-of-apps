@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: promtail-install
+  name: loki-install
   namespace: argocd
 spec:
   sources:
-    - chart: promtail
+    - chart: loki
       repoURL: https://grafana.github.io/helm-charts
       targetRevision: "*"
       helm:
-        releaseName: promtail
+        releaseName: loki
         valueFiles:
-          - $values/apps/promtail/default/values.yaml
+          - $values/apps/loki/values.yaml
     - repoURL: https://github.com/adaptivekind/app-of-apps
       targetRevision: HEAD
       ref: values
