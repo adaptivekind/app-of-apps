@@ -129,13 +129,6 @@ Apply the project
 kubectl apply -f app-of-apps/projects/project-default.yaml
 ```
 
-Check repo and projects set up
-
-```sh
-argocd repo list
-argocd proj list
-```
-
 Install app of apps
 
 ```sh

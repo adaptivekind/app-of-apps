@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-install
+  namespace: argocd
+spec:
+  sources:
+    - chart: prometheus
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: "*"
+      helm:
+        releaseName: prometheus
+        valueFiles:
+          - $values/apps/prometheus/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
+  project: project-default
+  destination:
+    name: in-cluster
+    namespace: lens
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
