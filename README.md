@@ -3,7 +3,7 @@
 ArgoCD GitOps managed app of apps for Kubernetes lab environments for
 experimentation and learning. This app of apps provide git source of desired
 resources to for deployment into a Kubernetes cluster of your choosing. The
-README below covers how to spin this up quickly on a local machine with k3d.
+README below covers how to spin this up quickly on a local machine.
 
 ArgoCD automatically applies updates to the resources in the git repository to
 the Kubernetes cluster.
@@ -28,8 +28,9 @@ access to the services.
 k3d cluster create my-cluster -p "443:443@loadbalancer"
 ```
 
-We'll use [Helm](https://helm.sh/) to install ArgoCD in our cluster and use the [argocd](https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli) command
-line interface for convenience. For example, with Homebrew install with:
+We'll use [Helm](https://helm.sh/) to install ArgoCD in our cluster and use the
+[argocd](https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli)
+command line interface for convenience. For example, with Homebrew install with:
 
 ```sh
 brew install helm argocd
@@ -132,7 +133,7 @@ Set Grafana TLS secret for https flows to the Grafana dashboard
 
 ```sh
 kubectl create -n monitoring secret tls grafana-server-tls \
-  --cert=$HOME/local/certs/grafana-local.crt \
+  --cert=$HOME/local/certs/grafana-local.crt               \
   --key=$HOME/local/certs/grafana-local.key
 ```
 
@@ -140,7 +141,7 @@ Set Grafana password to secret of your choosing
 
 ```sh
 kubectl create -n monitoring secret generic grafana-password \
-  --from-literal=admin-password=$GRAFANA_PASSWORD         \
+  --from-literal=admin-password=$GRAFANA_PASSWORD            \
   --from-literal=admin-user=admin
 ```
 
@@ -149,10 +150,10 @@ kubectl create -n monitoring secret generic grafana-password \
 And install app of apps
 
 ```sh
-argocd app create app-of-apps \
-  --sync-policy automated --sync-option Prune=true \
+argocd app create app-of-apps                            \
+  --sync-policy automated --sync-option Prune=true       \
   --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path env/k3d \
+  --path env/k3d                                         \
   --dest-server https://kubernetes.default.svc
 ```
 
