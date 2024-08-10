@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k3d-lgtm
+  name: k33-lgtm
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
