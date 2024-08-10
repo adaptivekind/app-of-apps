@@ -1,10 +1,12 @@
 # App of apps
 
 ArgoCD GitOps managed app of apps for Kubernetes lab environments for
-experimentation and learning. The app of apps provide git source of desired
-resources to for deployment in a Kubernetes cluster. ArgoCD automatically
-applies updates to the resources in the git repository to the Kubernetes
-cluster.
+experimentation and learning. This app of apps provide git source of desired
+resources to for deployment into a Kubernetes cluster of your choosing. The
+README below covers how to spin this up quickly on a local machine with k3d.
+
+ArgoCD automatically applies updates to the resources in the git repository to
+the Kubernetes cluster.
 
 ## Local k3d cluster
 
