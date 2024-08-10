@@ -14,7 +14,7 @@ the Kubernetes cluster.
 
 Get started with a local Kubernetes cluster using k3d. First install and startup
 [Docker](https://docs.docker.com/engine/install/). Then install k3d as described
-in the [https://k3d.io/](k3d documentation). For example with
+in the [k3d documentation](https://k3d.io/). For example with
 [Homebrew](https://brew.sh/):
 
 ```sh
