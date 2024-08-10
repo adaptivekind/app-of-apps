@@ -8,8 +8,8 @@ serviceAccount:
 config:
   kubernetes:
     mode: cluster
-  bookmarks:
-  services:
+  bookmarks: {}
+  services: {}
   widgets:
     - kubernetes:
         cluster:
