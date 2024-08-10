@@ -5,4 +5,19 @@ serviceAccount:
 
 config:
   kubernetes:
-    mode: default
+    mode: cluster
+  bookmarks:
+  services:
+  widgets:
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
