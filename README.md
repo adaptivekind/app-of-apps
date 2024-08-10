@@ -154,7 +154,10 @@ argocd app create app-of-apps \
   --dest-server https://kubernetes.default.svc
 ```
 
-### Accessing other services
+All the apps should now spin up in the Kubernetes cluster. View the status and
+troubleshoot in the [ArgoCD dashboard](https://argocd.local).
+
+### Accessing deployed services
 
 Log in to Grafana at <https://grafana.local/> and register Prometheus and Loki data source
 
