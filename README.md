@@ -94,14 +94,66 @@ On a mac you get load this straight in the clipboard with
 argocd admin initial-password -n argocd | head -n 1 | pbcopy
 ```
 
-Log in to Argo CD with username admin and password from above.
+Log in to Argo CD CLI with username admin and password from above.
 
 ```sh
 argocd login --username admin argocd.local --grpc-web
 ```
 
+Change this initial admin password to something secret.
 
+```sh
+argocd account update-password
+```
 
+You can log in to the ArgoCD console at <https://argocd.local>
+
+### Add the app of apps
+
+Register this app of app repository
+
+```sh
+argocd repo add https://github.com/adaptivekind/app-of-apps.git \
+```
+
+Apply the project configuration
+
+```sh
+kubectl apply -f boot/project-default.yaml
+```
+
+Set Grafana TLS secret for https flows to the grafan dashboard
+
+```sh
+kubectl create -n monitoring secret tls grafana-server-tls \
+  --cert=$HOME/local/certs/grafana-local.crt \
+  --key=$HOME/local/certs/grafana-local.key
+```
+
+Set Grafana password to secret of your choosing
+
+```sh
+kubectl create -n monitoring secret generic grafana-password \
+  --from-literal=admin-password=$GRAFANA_PASSWORD         \
+  --from-literal=admin-user=admin
+```
+
+And install app of apps
+
+```sh
+argocd app create app-of-apps \
+  --sync-policy automated --sync-option Prune=true \
+  --repo https://github.com/adaptivekind/app-of-apps.git \
+  --path env/k3d \
+  --dest-server https://kubernetes.default.svc
+```
+
+### Accessing other services
+
+Log in to Grafana at <https://grafana.local/> and register Prometheus and Loki data source
+
+- <http://prometheus-server.monitoring.svc.cluster.local>
+- <http://loki.monitoring.svc.cluster.local:3100>
 
 ### Clean up
 
