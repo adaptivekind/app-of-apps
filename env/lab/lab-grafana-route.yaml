@@ -8,8 +8,8 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Metrics
     gethomepage.dev/group: monitoring
-    gethomepage.dev/name: Grafana
-    gethomepage.dev/widget.type: Grafana
+    gethomepage.dev/name: grafana
+    gethomepage.dev/widget.type: grafana
     gethomepage.dev/widget.url: https://grafana
 spec:
   routes:
