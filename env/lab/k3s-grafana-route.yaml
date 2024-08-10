@@ -1,11 +1,11 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: k33-grafana-route
+  name: k3s-grafana-route
   namespace: monitoring
 spec:
   routes:
-    - match: Host(`grafana.purplepip.com`)
+    - match: Header("Service", "grafana")
       kind: Rule
       services:
         - name: grafana

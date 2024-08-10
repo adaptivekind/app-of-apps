@@ -1,6 +1,10 @@
 # App of apps
 
-App of apps for Kubernetes lab environments for experimentation and learning.
+ArgoCD GitOps managed app of apps for Kubernetes lab environments for
+experimentation and learning. The app of apps provide git source of desired
+resources to for deployment in a Kubernetes cluster. ArgoCD automatically
+applies updates to the resources in the git repository to the Kubernetes
+cluster.
 
 ## Local k3d cluster
 
@@ -108,7 +112,7 @@ argocd account update-password
 
 You can log in to the ArgoCD console at <https://argocd.local>
 
-### Add the app of apps
+### Prepare the configuration for the app of apps
 
 Register this app of app repository
 
@@ -122,7 +126,7 @@ Apply the project configuration
 kubectl apply -f boot/project-default.yaml
 ```
 
-Set Grafana TLS secret for https flows to the grafan dashboard
+Set Grafana TLS secret for https flows to the Grafana dashboard
 
 ```sh
 kubectl create -n monitoring secret tls grafana-server-tls \
@@ -137,6 +141,8 @@ kubectl create -n monitoring secret generic grafana-password \
   --from-literal=admin-password=$GRAFANA_PASSWORD         \
   --from-literal=admin-user=admin
 ```
+
+### Install the app of apps
 
 And install app of apps
 

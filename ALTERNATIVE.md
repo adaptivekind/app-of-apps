@@ -1,21 +1,26 @@
-# Registering a private git repository with ArgoCD
+# Alternative setups
+
+## ArgoCD private repository
+
+Install direnv for local environment variable handling
 
 ```sh
 brew install direnv
+```
+
+Create a GitHub app with access to your repository. Create an `.envrc` file in
+current folder and set GitHub app details.
+
+```sh
+export GITHUB_APP_ID=1234
+export GITHUB_APP_INSTALLATION_ID=5678
+export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
 ```
 
 In project directory:
 
 ```sh
 direnv allow
-```
-
-Create `.envrc` file in current folder with the GitHub app details set.
-
-```sh
-export GITHUB_APP_ID=1234
-export GITHUB_APP_INSTALLATION_ID=5678
-export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
 ```
 
 Register this private repository with Argo CD installation.
