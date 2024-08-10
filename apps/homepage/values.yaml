@@ -1,3 +1,8 @@
+enableRbac: true
+serviceAccount:
+  name: homepage
+  create: true
+
 config:
   kubernetes:
     mode: default
