@@ -81,7 +81,7 @@ helm install argocd argo/argo-cd --namespace argocd --create-namespace
 Set up Argo CD route
 
 ```sh
-kubectl apply -f app-of-apps/boot/argocd-route.yaml
+kubectl apply -f boot/argocd-route.yaml
 ```
 
 Set Argo CD certificate
@@ -126,7 +126,7 @@ argocd repo add https://github.com/adaptivekind/app-of-apps.git \
 Apply the project
 
 ```sh
-kubectl apply -f app-of-apps/projects/project-default.yaml
+kubectl apply -f boot/project-default.yaml
 ```
 
 Install app of apps
@@ -135,7 +135,7 @@ Install app of apps
 argocd app create app-of-apps \
   --sync-policy automated --sync-option Prune=true \
   --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path app-of-apps/k3d \
+  --path env/k3d \
   --dest-server https://kubernetes.default.svc
 ```
 
