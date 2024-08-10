@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   routes:
-    - match: Header("Service", "grafana")
+    - match: Headers("Service", "grafana")
       kind: Rule
       services:
         - name: grafana
