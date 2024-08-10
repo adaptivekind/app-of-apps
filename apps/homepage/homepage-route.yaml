@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homepage-route
+  namespace: homepage
+spec:
+  routes:
+    - match: Headers("Service", "homepage")
+      kind: Rule
+      services:
+        - name: homepage
+          port: 3000
