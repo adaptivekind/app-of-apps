@@ -1,98 +1,94 @@
 # App of apps
 
-## Create certificates and register hosts
+App of apps for Kubernetes lab environments for experimentation and learning.
 
-Generate a local CA so we can create locally trusted certificates
+## Local k3d cluster
+
+## Install Docker, k3d, Helm and ArgoCD
+
+Get started with a local Kubernetes cluster using k3d. First install and startup
+[Docker](https://docs.docker.com/engine/install/). Then install k3d as described
+in the [https://k3d.io/](k3d documentation). For example with
+[Homebrew](https://brew.sh/):
 
 ```sh
-mkdir -p ~/local/certs
-openssl genrsa -out ~/local/certs/local-ca.key 2048
-openssl req -new -x509 -subj "/CN=Local CA" \
-  -key ~/local/certs/local-ca.key \
-  -out ~/local/certs/local-ca.crt
+brew install k3d
 ```
 
-And trust locally
+Create the cluster with the load balancer listening on port 433 for https
+access to the services.
+
+```sh
+k3d cluster create my-cluster -p "443:443@loadbalancer"
+```
+
+We'll use [Helm](https://helm.sh/) to install ArgoCD in our cluster and use the [argocd](https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli) command
+line interface for convenience. For example, with Homebrew install with:
+
+```sh
+brew install helm argocd
+```
+
+Add the Helm repository for ArgoCD which hosts the Helm charts we need.
+
+```sh
+helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update
+```
+
+### Set up routes to ArgoCD and log in
+
+Set up an Argo CD route for us to access the ArgoCD API and the console.
+
+```sh
+kubectl apply -f boot/argocd-route.yaml
+```
+
+Generate certificates and keys for the https connections.
+
+```sh
+./generate-local-certificates.sh
+```
+
+You'll need to trust the local CA certificate to remove the warnings in the
+browser when you access services. On a mac you can do it with the `security`
+command as below.
 
 ```sh
 sudo security add-trusted-cert -d -r trustRoot \
-  -k "/Library/KeyChains/System.keychain" \
+  -k "/Library/KeyChains/System.keychain"      \
   ~/local/certs/local-ca.crt
 ```
 
-Then create certificate for Argo CD and Grafana
+Register the Argo CD certificate in the cluster for Argo CD to use for the https
+traffic.
 
 ```sh
-openssl req -subj '/CN=argocd.local' \
-  -new -newkey rsa:2048 -sha256 -noenc -x509 \
-  -addext "subjectAltName = DNS:argocd.local" \
-  -CA ~/local/certs/local-ca.crt \
-  -CAkey ~/local/certs/local-ca.key \
-  -keyout ~/local/certs/argocd-local.key \
-  -out ~/local/certs/argocd-local.crt
-openssl req -subj '/CN=grafana.local' \
-  -new -newkey rsa:2048 -sha256 -noenc -x509 \
-  -addext "subjectAltName = DNS:grafana.local" \
-  -CA ~/local/certs/local-ca.crt \
-  -CAkey ~/local/certs/local-ca.key \
-  -keyout ~/local/certs/grafana-local.key \
-  -out ~/local/certs/grafana-local.crt
+kubectl create -n argocd secret tls argocd-server-tls \
+  --cert=$HOME/local/certs/argocd-local.crt           \
+  --key=$HOME/local/certs/argocd-local.key
 ```
 
-Add the following to `/etc/hosts`
+Install ArgoCD
+
+```sh
+helm install argocd argo/argo-cd --namespace argocd --create-namespace
+```
+
+For this local stack, we'll use local domain names for simplicity. Register these in `/etc/hosts`
 
 ```sh
 127.0.0.1 argocd.local
 127.0.0.1 grafana.local
 ```
 
-## Installation pre-requisites
+Now we're ready to log in to Argo CD. Get the password with,
 
 ```sh
-helm repo add argo https://argoproj.github.io/argo-helm
-brew install argocd
-brew install direnv
+argocd admin initial-password -n argocd
 ```
 
-In project directory:
-
-```sh
-direnv allow
-```
-
-Create `.envrc` file in current folder with the GitHub app details set.
-
-```sh
-export GITHUB_APP_ID=1234
-export GITHUB_APP_INSTALLATION_ID=5678
-export GITHUB_APP_PRIVATE_KEY_PATH=my-key.pem
-```
-
-## Bootstrap of cluster
-
-Start up Docker and bootstrap with k3d cluster.
-
-```sh
-k3d cluster create my-cluster -p "443:443@loadbalancer"
-helm repo update
-helm install argocd argo/argo-cd --namespace argocd --create-namespace
-```
-
-Set up Argo CD route
-
-```sh
-kubectl apply -f boot/argocd-route.yaml
-```
-
-Set Argo CD certificate
-
-```sh
-kubectl create -n argocd secret tls argocd-server-tls \
-  --cert=$HOME/local/certs/argocd-local.crt \
-  --key=$HOME/local/certs/argocd-local.key
-```
-
-Get Argo CD password
+On a mac you get load this straight in the clipboard with
 
 ```sh
 argocd admin initial-password -n argocd | head -n 1 | pbcopy
@@ -104,69 +100,20 @@ Log in to Argo CD with username admin and password from above.
 argocd login --username admin argocd.local --grpc-web
 ```
 
-Change admin password
 
-```sh
-argocd account update-password
-```
 
-And log in at <https://argocd.local>
 
-## Set up repository
-
-Register this private repository with Argo CD installation.
-
-```sh
-argocd repo add https://github.com/adaptivekind/app-of-apps.git \
-  --github-app-id $GITHUB_APP_ID \
-  --github-app-installation-id $GITHUB_APP_INSTALLATION_ID \
-  --github-app-private-key-path $GITHUB_APP_PRIVATE_KEY_PATH
-```
-
-Apply the project
-
-```sh
-kubectl apply -f boot/project-default.yaml
-```
-
-Install app of apps
-
-```sh
-argocd app create app-of-apps \
-  --sync-policy automated --sync-option Prune=true \
-  --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path env/k3d \
-  --dest-server https://kubernetes.default.svc
-```
-
-Set Grafana TLS secret
-
-```sh
-kubectl create -n monitoring secret tls grafana-server-tls \
-  --cert=$HOME/local/certs/grafana-local.crt \
-  --key=$HOME/local/certs/grafana-local.key
-```
-
-Set Grafana password
-
-```sh
-kubectl create -n monitoring secret generic grafana-password \
-  --from-literal=admin-password=$GRAFANA_PASSWORD         \
-  --from-literal=admin-user=admin
-```
-
-Grafana at <https://grafana.local/>.
-
-Add Prometheus and Loki data source
-
-- <http://prometheus-server.monitoring.svc.cluster.local>
-- <http://loki.monitoring.svc.cluster.local:3100>
-
-## Clean up
+### Clean up
 
 Delete the app
 
 ```sh
 argocd app delete app-of-apps
 helm uninstall argo-cd -n argocd
+```
+
+or just delete the cluster
+
+```sh
+k3d cluster delete my-cluster
 ```
