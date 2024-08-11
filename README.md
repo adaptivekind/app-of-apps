@@ -162,10 +162,7 @@ troubleshoot in the [ArgoCD dashboard](https://argocd.local).
 
 ### Accessing deployed services
 
-Log in to Grafana at <https://grafana.local/> and register Prometheus and Loki data source
-
-- <http://prometheus-server.monitoring.svc.cluster.local>
-- <http://loki.monitoring.svc.cluster.local:3100>
+Log in to Grafana at <https://grafana.local/>.
 
 ### Clean up
 
