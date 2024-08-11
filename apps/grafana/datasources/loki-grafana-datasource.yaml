@@ -9,7 +9,7 @@ spec:
   datasource:
     name: loki
     type: loki
-    url: http://loki.monitoring.svc.cluster.local
+    url: http://loki.monitoring.svc.cluster.local:3100
     access: proxy
     isDefault: true
     jsonData:
