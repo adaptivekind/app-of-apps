@@ -3,6 +3,7 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-system-api-server
 spec:
+  folder: "kubernetes"
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
