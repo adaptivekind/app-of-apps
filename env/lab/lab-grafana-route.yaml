@@ -17,5 +17,5 @@ spec:
     - match: Headers("Service", "grafana")
       kind: Rule
       services:
-        - name: grafana
+        - name: grafana-service
           port: 3000
