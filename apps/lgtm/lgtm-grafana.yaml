@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-operator
+  name: lgtm-grafana
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  sources:
-    - chart: grafana-operator
-      repoURL: ghcr.io/grafana/helm-charts/grafana-operator
-      targetRevision: "v5.12.0"
-  project: project-default
   destination:
-    name: in-cluster
     namespace: monitoring
+    name: in-cluster
+  project: project-default
+  source:
+    path: apps/grafana
+    repoURL: https://github.com/adaptivekind/app-of-apps
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
