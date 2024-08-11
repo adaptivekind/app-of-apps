@@ -1,26 +1,14 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
 metadata:
   name: grafana
-  namespace: argocd
+  labels:
+    dashboards: "grafana"
 spec:
-  sources:
-    - chart: grafana
-      repoURL: https://grafana.github.io/helm-charts
-      targetRevision: "*"
-      helm:
-        releaseName: grafana
-        valueFiles:
-          - $values/apps/grafana/values.yaml
-    - repoURL: https://github.com/adaptivekind/app-of-apps
-      targetRevision: HEAD
-      ref: values
-  project: project-default
-  destination:
-    name: in-cluster
-    namespace: monitoring
-  syncPolicy:
-    automated:
-      prune: true
-    syncOptions:
-      - CreateNamespace=true
+  external:
+    adminPassword:
+      name: grafana-password
+      key: admin-password
+    adminUser:
+      name: grafana-password
+      key: admin-user
