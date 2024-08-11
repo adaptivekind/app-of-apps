@@ -10,3 +10,8 @@ spec:
     name: prometheus
     type: prometheus
     url: http://prometheus-server.monitoring.svc.cluster.local
+    access: proxy
+    isDefault: true
+    jsonData:
+      "tlsSkipVerify": true
+      "timeInterval": "5s"
