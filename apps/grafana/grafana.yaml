@@ -5,11 +5,6 @@ metadata:
   labels:
     dashboards: "grafana"
 spec:
-  external:
-    url: https://192.168.178.72
-    adminPassword:
-      name: grafana-password
-      key: admin-password
-    adminUser:
-      name: grafana-password
-      key: admin-user
+  config:
+    admin:
+      existingSecret: grafana-password
