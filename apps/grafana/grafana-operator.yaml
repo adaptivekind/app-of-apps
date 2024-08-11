@@ -7,6 +7,7 @@ spec:
   sources:
     - chart: grafana-operator
       repoURL: oci://ghcr.io/grafana/helm-charts/grafana-operator
+      targetRevision: "v5.12.0"
   project: project-default
   destination:
     name: in-cluster
