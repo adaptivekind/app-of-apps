@@ -8,6 +8,8 @@ spec:
     - chart: grafana-operator
       repoURL: ghcr.io/grafana/helm-charts/grafana-operator
       targetRevision: "v5.12.0"
+      helm:
+        passCredentials: true
   project: project-default
   destination:
     name: in-cluster

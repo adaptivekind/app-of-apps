@@ -32,3 +32,24 @@ argocd repo add https://github.com/adaptivekind/app-of-apps.git \
   --github-app-private-key-path $GITHUB_APP_PRIVATE_KEY_PATH
 ```
 
+Register credentials for ghcr repository
+
+```sh
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ghcr
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: ghcr
+  type: helm
+  enableOCI: "true"
+  url: ghcr.io/grafana/helm-charts/grafana-operator
+  password: $GITHUB_PAT
+  username: $GITHUB_USERNAME
+  ForceHttpBasicAuth: "true"
+EOF
+```
