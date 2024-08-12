@@ -8,5 +8,5 @@ spec:
     - match: Headers("Service", "dashboard")
       kind: Rule
       services:
-        - name: kubernetes-dashboard
-          port: 8001
+        - name: kubernetes-dashboard-web
+          port: 8000
