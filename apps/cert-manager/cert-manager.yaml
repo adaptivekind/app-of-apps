@@ -12,9 +12,11 @@ spec:
       targetRevision: "*"
       helm:
         releaseName: cert-manager
-        valuesObject:
-          crds:
-            enabled: true
+        valueFiles:
+          - $values/apps/cert-manager/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
   project: project-default
   destination:
     name: in-cluster
