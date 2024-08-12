@@ -1,9 +1,14 @@
 # See https://loki.{{lab_domain}}/config for applied config
+# See https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
+# for how they are set in the chart (there are subtle differences)
 deploymentMode: SingleBinary
 loki:
   auth_enabled: false
   commonConfig:
     replication_factor: 1
+    ring:
+      instance_addr: 127.0.0.1
+    instance_addr: 127.0.0.1
   storage:
     type: "filesystem"
   schemaConfig:
