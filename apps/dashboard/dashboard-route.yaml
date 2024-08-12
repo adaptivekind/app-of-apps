@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-route
+  namespace: dashboard
+spec:
+  routes:
+    - match: Headers("Service", "dashboard")
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          port: 8001
