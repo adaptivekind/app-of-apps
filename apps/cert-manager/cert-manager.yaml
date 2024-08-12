@@ -13,7 +13,7 @@ spec:
       helm:
         releaseName: cert-manager
         valuesObject:
-        installCRDs: true
+          crds.enabled: true
   project: project-default
   destination:
     name: in-cluster
