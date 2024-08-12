@@ -1,0 +1,12 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: loki-route
+  namespace: loki
+spec:
+  routes:
+    - match: Headers("Service", "loki")
+      kind: Rule
+      services:
+        - name: loki
+          port: 3100
