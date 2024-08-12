@@ -10,6 +10,7 @@ metadata:
   labels:
     app: influxdb
   name: influxdb
+  namespace: influxdb
 spec:
   accessModes:
     - ReadWriteOnce
@@ -45,10 +46,10 @@ spec:
           volumeMounts:
             - mountPath: /data/influxdb
               name: data-influxdb
-  volumes:
-    - name: data-influxdb
-      persistentVolumeClaim:
-        claimName: influxdb
+      volumes:
+        - name: data-influxdb
+          persistentVolumeClaim:
+            claimName: influxdb
 ---
 apiVersion: v1
 kind: Service
