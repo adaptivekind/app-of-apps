@@ -9,6 +9,7 @@ spec:
   sources:
     - chart: cert-manager
       repoURL: https://charts.jetstack.io
+      targetRevision: "*"
       helm:
         releaseName: cert-manager
         valuesObject:
