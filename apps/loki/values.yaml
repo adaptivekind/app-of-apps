@@ -1,11 +1,12 @@
+# See https://loki.{{lab_domain}}/config for applied config
 deploymentMode: SingleBinary
 loki:
   auth_enabled: false
-  commonConfig:
+  common:
     replication_factor: 1
   storage:
     type: "filesystem"
-  schemaConfig:
+  schema_config:
     configs:
       - from: "2024-01-01"
         store: tsdb
@@ -14,6 +15,8 @@ loki:
           period: 24h
         object_store: filesystem
         schema: v13
+  frontend:
+    address: 127.0.0.1
 singleBinary:
   replicas: 1
 read:
