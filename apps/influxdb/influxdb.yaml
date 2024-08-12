@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: influxdb
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: influxdb
+  name: influxdb
+  namespace: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  serviceName: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - image: influxdb:2.7.9
+          name: influxdb
+          ports:
+            - containerPort: 8086
+              name: influxdb
+          volumeMounts:
+            - mountPath: /data/influxdb
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        namespace: influxdb
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10G
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+  namespace: influxdb
+spec:
+  ports:
+    - name: influxdb
+      port: 8086
+      targetPort: 8086
+  selector:
+    app: influxdb
+  type: ClusterIP
