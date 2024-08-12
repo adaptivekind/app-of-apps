@@ -1,0 +1,14 @@
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: ian@adaptivekind.com
+    solvers:
+    - dns01:
+        cloudflare:
+          email: ian@adaptivekind.com
+          apiKeySecretRef:
+            name: cloudflare-apikey
+            key: apikey
