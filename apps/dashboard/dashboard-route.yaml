@@ -1,15 +1,12 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRouteTCP
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: dashboard-route
   namespace: dashboard
 spec:
-  entryPoints:
-    - websecure
   routes:
     - match: Headers("Service", "dashboard")
+      kind: Rule
       services:
-        - name: kubernetes-dashboard-kong-proxy
-          port: 443
-  tls:
-    passthrough: true
+        - name: kubernetes-dashboard-web
+          port: 8000
