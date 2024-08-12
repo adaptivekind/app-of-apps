@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNIRegexp(`dashboard.{domain:[a-z]+}.com`)
+    - match: HostSNIRegexp(`kubernetes.{domain:[a-z]+}.com`)
       services:
         - name: kubernetes-dashboard-kong-proxy
           port: 443
