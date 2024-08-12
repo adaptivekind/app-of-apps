@@ -4,21 +4,6 @@ kind: Namespace
 metadata:
   name: influxdb
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  labels:
-    app: influxdb
-  name: influxdb
-  namespace: influxdb
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
-  resources:
-    requests:
-      storage: 10Gi
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -45,11 +30,17 @@ spec:
               name: influxdb
           volumeMounts:
             - mountPath: /data/influxdb
-              name: data-influxdb
-      volumes:
-        - name: data-influxdb
-          persistentVolumeClaim:
-            claimName: influxdb
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        namespace: influxdb
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10G
 ---
 apiVersion: v1
 kind: Service
