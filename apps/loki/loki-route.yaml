@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   routes:
-    - match: Headers("Service", "loki")
+    - match: HostRegexp(`loki.{domain:[a-z\.]+}`)
       kind: Rule
       services:
         - name: loki

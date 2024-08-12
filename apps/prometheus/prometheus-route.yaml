@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   routes:
-    - match: Headers("Service", "prometheus")
+    - match: HostRegexp(`prometheus.{domain:[a-z\.]+}`)
       kind: Rule
       services:
         - name: prometheus-kube-prometheus-prometheus

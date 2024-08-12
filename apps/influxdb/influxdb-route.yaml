@@ -5,7 +5,7 @@ metadata:
   namespace: influxdb
 spec:
   routes:
-    - match: Headers("Service", "influxdb")
+    - match: HostRegexp(`influxdb.{domain:[a-z\.]+}`)
       kind: Rule
       services:
         - name: influxdb
