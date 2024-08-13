@@ -1,0 +1,10 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-system-api-server
+spec:
+  folder: "kubernetes"
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: "https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json"
