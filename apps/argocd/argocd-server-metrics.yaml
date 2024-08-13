@@ -4,6 +4,7 @@ metadata:
   namespace: argocd
   name: argocd-server-metrics
   labels:
+    app: kube-prometheus-stack-operator
     release: prometheus
 spec:
   selector:
