@@ -3,7 +3,8 @@ kind: Application
 metadata:
   name: grafana-operator
   namespace: argocd
-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
