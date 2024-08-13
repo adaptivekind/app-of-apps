@@ -7,6 +7,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: argocd-redis
+      app.kubernetes.io/name: argocd-redis-metrics
   endpoints:
   - port: http-metrics
