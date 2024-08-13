@@ -7,4 +7,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: "https://github.com/argoproj/argo-cd/blob/master/examples/dashboard.json"
+  url: "https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json"
