@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: lab-cert-manager
+  name: lgtm-app
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +11,7 @@ spec:
     name: in-cluster
   project: project-default
   source:
-    path: apps/cert-manager
+    path: apps/lgtm
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:
