@@ -53,3 +53,14 @@ stringData:
   ForceHttpBasicAuth: "true"
 EOF
 ```
+
+## Verify Certificate
+
+Verify ArgoCD cert against CA
+
+```sh
+openssl verify -CAfile \
+<(kubectl -n certificate-authority get secret root-secret -o jsonpath='{.data.ca\.crt}' | base64 -d) \
+<(kubectl -n argocd get secret argocd-server-tls -o jsonpath='{.data.tls\.crt}' | base64 -d)
+```
+

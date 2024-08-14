@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: selfsigned-ca
+  name: ca-certificate
   namespace: certificate-authority
 spec:
   isCA: true
