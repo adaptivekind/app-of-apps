@@ -153,7 +153,7 @@ And install app of apps
 argocd app create app-of-apps                            \
   --sync-policy automated --sync-option Prune=true       \
   --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path env/k3d                                         \
+  --path env/lab                                         \
   --dest-server https://kubernetes.default.svc
 ```
 
