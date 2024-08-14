@@ -17,5 +17,12 @@ spec:
   syncPolicy:
     automated:
       prune: true
+      selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/instance: my-argocd-application-name
+      annotations:
+        argocd.argoproj.io/tracking-id: >-
+          certificate-authority:/Namespace:certificate-authority/certificate-authority
     syncOptions:
       - CreateNamespace=true
