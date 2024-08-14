@@ -123,12 +123,6 @@ Register this app of app repository
 argocd repo add https://github.com/adaptivekind/app-of-apps.git \
 ```
 
-Apply the project configuration
-
-```sh
-kubectl apply -f boot/project-default.yaml
-```
-
 Set Grafana TLS secret for https flows to the Grafana dashboard
 
 ```sh
@@ -153,7 +147,7 @@ And install app of apps
 argocd app create app-of-apps                            \
   --sync-policy automated --sync-option Prune=true       \
   --repo https://github.com/adaptivekind/app-of-apps.git \
-  --path env/lab                                         \
+  --path env/k3d                                         \
   --dest-server https://kubernetes.default.svc
 ```
 
