@@ -12,4 +12,5 @@ spec:
         - name: argocd-server
           port: 443
   tls:
+    passthrough: true
     secretName: argocd.local-secret
