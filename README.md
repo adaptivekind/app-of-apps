@@ -48,7 +48,7 @@ helm repo update
 Set up an Argo CD route for us to access the ArgoCD API and the console.
 
 ```sh
-kubectl apply -f boot/argocd-route.yaml
+kubectl apply -f apps/argocd/argocd-route.yaml
 ```
 
 Generate certificates and keys for the https connections.
