@@ -5,7 +5,10 @@ metadata:
   namespace: certificate-authority
 spec:
   isCA: true
-  commonName: selfsigned-ca
+  commonName: Local Cluster CA
+  subject:
+    organizations:
+      - Adaptive Kind
   secretName: root-secret
   privateKey:
     algorithm: ECDSA

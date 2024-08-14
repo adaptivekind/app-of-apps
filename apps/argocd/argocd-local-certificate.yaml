@@ -4,6 +4,10 @@ metadata:
   name: argocd-local-certificate
 spec:
   secretName: argocd-server-tls
+  commonName: argocd.local
+  subject:
+    organizations:
+      - Adaptive Kind
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
