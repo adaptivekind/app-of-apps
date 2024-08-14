@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certificate-authority
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: certificate-authority
+    name: in-cluster
+  project: project-default
+  source:
+    path: apps/certificate-authority
+    repoURL: https://github.com/adaptivekind/app-of-apps
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+  syncOptions:
+    - CreateNamespace=true
