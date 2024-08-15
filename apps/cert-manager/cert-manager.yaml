@@ -19,7 +19,7 @@ spec:
     - repoURL: https://github.com/adaptivekind/app-of-apps
       targetRevision: HEAD
       ref: values
-  project: project-default
+  project: default
   destination:
     name: in-cluster
     namespace: cert-manager

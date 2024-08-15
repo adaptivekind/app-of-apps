@@ -10,7 +10,7 @@ spec:
       targetRevision: "*"
       helm:
         releaseName: kube-state-metrics
-  project: project-default
+  project: default
   destination:
     name: in-cluster
     namespace: monitoring

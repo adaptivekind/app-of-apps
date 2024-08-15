@@ -13,7 +13,7 @@ spec:
       helm:
         releaseName: kubernetes-dashboard
       ref: values
-  project: project-default
+  project: default
   destination:
     name: in-cluster
     namespace: dashboard

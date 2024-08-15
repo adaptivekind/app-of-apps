@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: certificate-authority
     name: in-cluster
-  project: project-default
+  project: default
   source:
     path: apps/certificate-authority
     repoURL: https://github.com/adaptivekind/app-of-apps
