@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: lab
+  name: light
   namespace: argocd
 spec:
   destination:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: env/lab
+    path: env/light
     repoURL: https://github.com/adaptivekind/app-of-apps.git
   syncPolicy:
     automated: {}
