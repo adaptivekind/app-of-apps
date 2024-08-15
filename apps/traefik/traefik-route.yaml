@@ -8,5 +8,5 @@ spec:
     - match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
       kind: Rule
       services:
-        - name: homepage
-          port: 3000
+        - name: traefik-dashboard
+          port: 9000
