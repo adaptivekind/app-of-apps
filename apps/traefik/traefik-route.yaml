@@ -1,0 +1,12 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-route
+  namespace: kube-system
+spec:
+  routes:
+    - match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
+      kind: Rule
+      services:
+        - name: homepage
+          port: 3000
