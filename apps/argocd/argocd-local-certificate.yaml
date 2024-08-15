@@ -14,6 +14,5 @@ spec:
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
-    namespace: certificate-authority
   dnsNames:
     - argocd.local
