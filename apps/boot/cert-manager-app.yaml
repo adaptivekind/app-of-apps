@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: argocd
     name: in-cluster
-  project: project-default
+  project: default
   source:
     path: apps/cert-manager
     repoURL: https://github.com/adaptivekind/app-of-apps
