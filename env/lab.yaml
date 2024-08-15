@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2024-08-15T00:47:00Z"
+  generation: 26
+  name: app-of-apps
+  namespace: argocd
+  resourceVersion: "56320"
+  uid: 7e146901-529b-4198-a187-ed996a0a2e90
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: env/lab
+    repoURL: https://github.com/adaptivekind/app-of-apps.git
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - Prune=true
