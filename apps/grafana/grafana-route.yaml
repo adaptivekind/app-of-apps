@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: HostSNIRegexp(`grafana.{domain:[a-z\.]+}`)
+      match: HostRegexp(`grafana.{domain:[a-z\.]+}`)
       services:
         - name: grafana-service
           port: 3000
