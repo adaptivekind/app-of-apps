@@ -7,7 +7,8 @@ metadata:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/name: traefik-dashboard
 spec:
-  type: ClusterIP
+  type: ExternalName
+  externalName: 
   ports:
     - name: traefik
       port: 9000

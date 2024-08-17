@@ -1,14 +1,4 @@
 apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  namespace: traefik-extras
-  name: redirect-to-dashbaord
-spec:
-  redirectRegex:
-    regex: ^https://([^\/]*)/$
-    replacement: https://${1}/dashboard/
----
-apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-route
@@ -23,8 +13,8 @@ spec:
         - name: redirect-to-dashbaord
           namespace: kube-system
       services:
-        - name: traefik-dashboard
+        - kind: TraefikService
+          name: api@internal
           namespace: kube-system
-          port: 9000
   tls:
     secretName: traefik-server-tls
