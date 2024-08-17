@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
       middlewares:
-        - name: redirect-to-dashbaord
+        - name: redirect-to-dashboard
           namespace: kube-system
       services:
         - kind: TraefikService
