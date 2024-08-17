@@ -17,7 +17,8 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
+    - kind: Rule
+      match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
       middlewares:
         - name: redirect-to-dashbaord
           namespace: kube-system
