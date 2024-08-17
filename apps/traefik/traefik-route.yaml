@@ -9,7 +9,7 @@ spec:
     replacement: http://${1}/dashboard/
 ---
 apiVersion: traefik.io/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRoute
 metadata:
   name: traefik-route
   namespace: kube-system
@@ -17,9 +17,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNIRegexp(`traefik.{domain:[a-z\.]+}`)
-      middleware:
-        - redirect-to-dashbaord
+    - match: HostRegexp(`traefik.{domain:[a-z\.]+}`)
+      middlewares:
+        - name: redirect-to-dashbaord
+          namespace: kube-system
       services:
         - name: traefik-dashboard
           namespace: kube-system
