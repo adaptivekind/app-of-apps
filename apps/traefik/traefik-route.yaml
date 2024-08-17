@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  namespace: kube-system
+  namespace: traefik-extras
   name: redirect-to-dashbaord
 spec:
   redirectRegex:
@@ -12,7 +12,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-route
-  namespace: kube-system
+  namespace: traefik-extras
 spec:
   entryPoints:
     - websecure
