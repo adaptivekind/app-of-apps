@@ -75,6 +75,8 @@ For this local stack, we'll use local domain names for simplicity. Register thes
 ```sh
 127.0.0.1 argocd.local
 127.0.0.1 grafana.local
+127.0.0.1 prometheus.local
+127.0.0.1 traefik.local
 ```
 
 Now we're ready to log in to Argo CD. Get the password with,
