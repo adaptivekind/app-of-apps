@@ -34,6 +34,15 @@ spec:
   tls:
     secretName: prometheus-route-tls
 ---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-https
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -50,4 +59,3 @@ spec:
           port: 9090
       middlewares:
         - name: redirect-to-https
-          namespace: traefik-extras
