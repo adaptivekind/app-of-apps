@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: env/base
+    repoURL: https://github.com/adaptivekind/app-of-apps.git
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - Prune=true

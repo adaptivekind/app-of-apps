@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k3d-lgtm
+  name: monitoring-application
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     name: in-cluster
   project: default
   source:
-    path: apps/lgtm
+    path: apps/monitoring
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:

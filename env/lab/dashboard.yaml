@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: dashboard-app
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: monitoring
+    namespace: argocd
     name: in-cluster
   project: default
   source:
-    path: apps/grafana
+    path: apps/dashboard
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:
