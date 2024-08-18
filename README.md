@@ -43,44 +43,31 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 ```
 
-### Set up routes to ArgoCD and log in
-
-Set up an Argo CD route for us to access the ArgoCD API and the console.
-
-```sh
-kubectl apply -f apps/argocd/argocd-route.yaml
-```
-
-Generate certificates and keys for the https connections.
-
-```sh
-./generate-local-certificates.sh
-```
-
-You'll need to trust the local CA certificate to remove the warnings in the
-browser when you access services. On a mac you can do it with the `security`
-command as below.
-
-```sh
-sudo security add-trusted-cert -d -r trustRoot \
-  -k "/Library/KeyChains/System.keychain"      \
-  ~/local/certs/local-ca.crt
-```
-
-Register the Argo CD certificate in the cluster for Argo CD to use for the https
-traffic.
-
-```sh
-kubectl create -n argocd secret tls argocd-server-tls \
-  --cert=$HOME/local/certs/argocd-local.crt           \
-  --key=$HOME/local/certs/argocd-local.key
-```
-
 Install ArgoCD
 
 ```sh
 helm install argocd argo/argo-cd --namespace argocd --create-namespace \
   --values boot/argocd-values.yaml
+```
+
+Apply an application from the env folder, for example:
+
+```sh
+kubectl apply -f env/base.yaml
+```
+
+Get the CA certificate
+
+```sh
+kubectl get secret -n cert-manager root-secret -o jsonpath="{.data.ca\.crt}" |
+  base64 -d > /tmp/lab-cluster-ca.crt
+
+And trust it
+
+```sh
+sudo security add-trusted-cert -d -r trustRoot \
+  -k "/Library/KeyChains/System.keychain"      \
+  /tmp/lab-cluster-ca.crt
 ```
 
 For this local stack, we'll use local domain names for simplicity. Register these in `/etc/hosts`
@@ -96,16 +83,10 @@ Now we're ready to log in to Argo CD. Get the password with,
 argocd admin initial-password -n argocd
 ```
 
-On a mac you get load this straight in the clipboard with
-
-```sh
-argocd admin initial-password -n argocd | head -n 1 | pbcopy
-```
-
 Log in to Argo CD CLI with username admin and password from above.
 
 ```sh
-argocd login --username admin argocd.local --grpc-web
+argocd login --username admin argocd.local
 ```
 
 Change this initial admin password to something secret.
@@ -118,25 +99,23 @@ You can log in to the ArgoCD console at <https://argocd.local>
 
 ### Prepare the configuration for the app of apps
 
-Register this app of app repository
+Install `direnv`
 
 ```sh
-argocd repo add https://github.com/adaptivekind/app-of-apps.git \
+brew install direnv
 ```
 
-Set Grafana TLS secret for https flows to the Grafana dashboard
+Set `GRAFANA_ADMIN_PASSWORD` in `.envrc` file 
 
-```sh
-kubectl create -n monitoring secret tls grafana-server-tls \
-  --cert=$HOME/local/certs/grafana-local.crt               \
-  --key=$HOME/local/certs/grafana-local.key
+```txt
+export GRAFANA_ADMIN_PASSWORD=super-secret
 ```
 
-Set Grafana password to secret of your choosing
+Set the Grafana secret
 
 ```sh
 kubectl create -n monitoring secret generic grafana-password \
-  --from-literal=admin-password=$GRAFANA_PASSWORD            \
+  --from-literal=admin-password=$GRAFANA_ADMIN_PASSWORD      \
   --from-literal=admin-user=admin
 ```
 
