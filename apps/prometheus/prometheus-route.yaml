@@ -49,5 +49,5 @@ spec:
         - name: prometheus-kube-prometheus-prometheus
           port: 9090
       middlewares:
-        - name: redirect-https
+        - name: redirect-to-https
           namespace: traefik-extras
