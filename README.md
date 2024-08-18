@@ -79,7 +79,8 @@ kubectl create -n argocd secret tls argocd-server-tls \
 Install ArgoCD
 
 ```sh
-helm install argocd argo/argo-cd --namespace argocd --create-namespace
+helm install argocd argo/argo-cd --namespace argocd --create-namespace \
+  --values boot/argocd-values.yaml
 ```
 
 For this local stack, we'll use local domain names for simplicity. Register these in `/etc/hosts`
