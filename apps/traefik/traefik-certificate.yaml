@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: traefik-route-tls
   secretTemplate:
-    label:
+    labels:
       cluster-issuer: ca-issuer
   commonName: traefik.local
   isCA: false

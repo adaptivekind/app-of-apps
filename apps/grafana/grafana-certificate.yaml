@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: grafana-route-tls
   secretTemplate:
-    label:
+    labels:
       cluster-issuer: ca-issuer
   isCA: false
   usages:
