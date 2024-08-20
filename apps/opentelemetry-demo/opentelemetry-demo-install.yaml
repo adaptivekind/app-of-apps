@@ -10,6 +10,8 @@ spec:
     - chart: opentelemetry-demo
       repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
       targetRevision: "*"
+      helm:
+        releaseName: opentelemetry-demo
   project: default
   destination:
     name: in-cluster
