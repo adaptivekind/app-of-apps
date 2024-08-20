@@ -6,7 +6,7 @@ spec:
   secretName: grafana-route-tls
   secretTemplate:
     label:
-      cluster-issuer: ca-issue
+      cluster-issuer: ca-issuer
   isCA: false
   usages:
     - server auth

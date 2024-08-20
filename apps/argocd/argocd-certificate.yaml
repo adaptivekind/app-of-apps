@@ -6,7 +6,7 @@ spec:
   secretName: argocd-route-tls
   secretTemplate:
     label:
-      cluster-issuer: ca-issue
+      cluster-issuer: ca-issuer
   commonName: argocd.local
   isCA: false
   usages:
