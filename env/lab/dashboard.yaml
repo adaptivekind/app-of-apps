@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dashboard-app
+  name: dashboard
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
