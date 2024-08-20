@@ -4,6 +4,9 @@ metadata:
   name: argocd-certificate
 spec:
   secretName: argocd-server-tls
+  secretTemplate:
+    label:
+      cluster-issuer: ca-issue
   commonName: argocd.local
   isCA: false
   usages:

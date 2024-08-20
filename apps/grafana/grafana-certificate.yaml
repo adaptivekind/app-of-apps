@@ -4,6 +4,9 @@ metadata:
   name: grafana-certificate
 spec:
   secretName: grafana-server-tls
+  secretTemplate:
+    label:
+      cluster-issuer: ca-issue
   isCA: false
   usages:
     - server auth

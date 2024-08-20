@@ -5,6 +5,9 @@ metadata:
   namespace: kube-system
 spec:
   secretName: traefik-server-tls
+  secretTemplate:
+    label:
+      cluster-issuer: ca-issue
   commonName: traefik.local
   isCA: false
   usages:
