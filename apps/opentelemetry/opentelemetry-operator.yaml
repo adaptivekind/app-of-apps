@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: opentelemetry-operator
+  name: opentelemetry-operator-install
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
