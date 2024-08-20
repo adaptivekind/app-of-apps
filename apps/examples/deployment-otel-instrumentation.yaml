@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-otel-instrumentation
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: example-otel-instrumentation
+  template:
+    metadata:
+      labels:
+        app: example-otel-instrumentation
+    spec:
+      containers:
+      - image: ghcr.io/adaptivekind/example-otel-instrumentation:latest
+        name: example-otel-instrumentation
