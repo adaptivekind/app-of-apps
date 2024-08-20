@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   secretName: traefik-server-tls
+  commonName: Traefik
   isCA: false
   usages:
     - server auth

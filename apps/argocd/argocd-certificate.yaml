@@ -4,6 +4,7 @@ metadata:
   name: argocd-certificate
 spec:
   secretName: argocd-server-tls
+  commonName: Argo CD
   isCA: false
   usages:
     - server auth
