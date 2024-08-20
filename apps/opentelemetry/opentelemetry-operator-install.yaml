@@ -12,6 +12,12 @@ spec:
     - chart: opentelemetry-operator
       repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
       targetRevision: "*"
+      helm:
+        valueFiles:
+          - $values/apps/opentelemetry/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
   project: default
   destination:
     name: in-cluster
