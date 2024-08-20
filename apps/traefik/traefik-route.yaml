@@ -16,4 +16,4 @@ spec:
           name: api@internal
           namespace: kube-system
   tls:
-    secretName: traefik-server-tls
+    secretName: traefik-route-tls

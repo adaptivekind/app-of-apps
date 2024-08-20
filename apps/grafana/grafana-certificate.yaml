@@ -3,7 +3,7 @@ kind: Certificate
 metadata:
   name: grafana-certificate
 spec:
-  secretName: grafana-server-tls
+  secretName: grafana-route-tls
   secretTemplate:
     label:
       cluster-issuer: ca-issue

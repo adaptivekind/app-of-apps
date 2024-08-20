@@ -13,4 +13,4 @@ spec:
         - name: grafana-service
           port: 3000
   tls:
-    secretName: grafana-server-tls
+    secretName: grafana-route-tls

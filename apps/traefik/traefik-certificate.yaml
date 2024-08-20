@@ -4,7 +4,7 @@ metadata:
   name: traefik-certificate
   namespace: kube-system
 spec:
-  secretName: traefik-server-tls
+  secretName: traefik-route-tls
   secretTemplate:
     label:
       cluster-issuer: ca-issue
