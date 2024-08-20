@@ -20,6 +20,6 @@ spec:
       pipelines:
         traces:
           exporters:
-            -debug
+            - debug
           receivers:
             - otlp
