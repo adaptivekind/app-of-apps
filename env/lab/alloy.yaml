@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alloy
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    name: in-cluster
+  project: default
+  source:
+    path: apps/alloy
+    repoURL: https://github.com/adaptivekind/app-of-apps
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
