@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-dashboard
+  name: alloy-install
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   sources:
-    - chart: kubernetes-dashboard
-      repoURL: https://kubernetes.github.io/dashboard/
+    - chart: alloy
+      repoURL: https://grafana.github.io/helm-charts
       targetRevision: "*"
-      helm:
-        releaseName: kubernetes-dashboard
-      ref: values
   project: default
   destination:
     name: in-cluster
-    namespace: dashboard
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-prometheus-stack
+  name: prometheus-stack-install
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io

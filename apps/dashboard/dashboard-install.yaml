@@ -1,26 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: promtail
+  name: kubernetes-dashboard-install
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   sources:
-    - chart: promtail
-      repoURL: https://grafana.github.io/helm-charts
+    - chart: kubernetes-dashboard
+      repoURL: https://kubernetes.github.io/dashboard/
       targetRevision: "*"
       helm:
-        releaseName: promtail
-        valueFiles:
-          - $values/apps/promtail/values.yaml
-    - repoURL: https://github.com/adaptivekind/app-of-apps
-      targetRevision: HEAD
+        releaseName: kubernetes-dashboard
       ref: values
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: dashboard
   syncPolicy:
     automated:
       prune: true
