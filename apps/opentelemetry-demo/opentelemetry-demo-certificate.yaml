@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: opentelemetry-demo-certificate
+spec:
+  secretName: opentelemetry-demo-route-tls
+  secretTemplate:
+    labels:
+      cluster-issuer: ca-issuer
+  isCA: false
+  usages:
+    - server auth
+    - client auth
+  subject:
+    organizations:
+      - Adaptive Kind
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - opentelement-demo.local

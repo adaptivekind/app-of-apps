@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: opentelementry-demo-route
+  namespace: opentelementry-demo
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: HostRegexp(`opentelementry-demo.{domain:[a-z\.]+}`)
+      services:
+        - name: opentelemetry-demo-frontendproxy
+          port: 8080
+  tls:
+    secretName: opentelementry-demo-route-tls
