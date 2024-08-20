@@ -4,7 +4,7 @@ metadata:
   name: opentelemetry-collector
   namespace: monitoring
 spec:
-  config: |
+  config:
     receivers:
       otlp:
         protocols:
