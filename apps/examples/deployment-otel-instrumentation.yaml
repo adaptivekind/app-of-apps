@@ -9,6 +9,8 @@ spec:
       app: example-otel-instrumentation
   template:
     metadata:
+      annotations:
+        sidecar.opentelemetry.io/inject: "true"
       labels:
         app: example-otel-instrumentation
     spec:
