@@ -1,0 +1,16 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: tempo-grafana-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: tempo
+    type: tempo
+    url: http://tempo.monitoring.svc.cluster.local:3100
+    access: proxy
+    jsonData:
+      "tlsSkipVerify": true
+      "timeInterval": "5s"
