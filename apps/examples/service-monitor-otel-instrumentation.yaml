@@ -1,13 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: otel-instrumentation
+  name: example-otel-instrumentation
   namespace: examples
   labels:
     release: prometheus
 spec:
   selector:
     matchLabels:
-      app: otel-instrumentation
+      app: example-otel-instrumentation
   endpoints:
   - port: http-metrics
