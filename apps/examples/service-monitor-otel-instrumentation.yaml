@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: otel-instrumentation
+  namespace: examples
+spec:
+  selector:
+    matchLabels:
+      app: otel-instrumentation
+  endpoints:
+  - port: metrics
