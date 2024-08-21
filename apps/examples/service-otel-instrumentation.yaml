@@ -8,9 +8,12 @@ spec:
     - name: api
       port: 3000
       targetPort: 3000
-    - name: metrics
+    - name: collector-metrics
       port: 8888
       targetPort: 8888
+    - name: metrics
+      port: 8889
+      targetPort: 8889
   selector:
     app: example-otel-instrumentation
   type: ClusterIP
