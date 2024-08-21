@@ -6,7 +6,28 @@ metadata:
 spec:
   mode: sidecar
   config:
+    memory_limiter:
+      check_interval: 1s
+      limit_mib: 4000
+      spike_limit_mib: 800
+    processors:
+      resourcedetection:
+        detectors: [env, system]
+    batch:
+      send_batch_size: 10000
+      timeout: 10s
+
     receivers:
+      hostmetrics:
+        collection_interval: 10s
+        scrapers:
+          cpu:
+          disk:
+          filesystem:
+          load:
+          memory:
+          network:
+          paging:
       otlp:
         protocols:
           grpc:
@@ -28,6 +49,7 @@ spec:
             - debug
           receivers:
             - otlp
+            - hostmetrics
         logs:
           exporters:
             - debug
