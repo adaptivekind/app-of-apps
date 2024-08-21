@@ -4,7 +4,14 @@ metadata:
   name: opentelemetry-collector
   namespace: monitoring
 spec:
-  mode: sidecar
+  mode: daemonset
+  presets:
+    kubernetesAttributes:
+      enabled: true
+    kubeletMetrics:
+      enabled: true
+    logsCollection:
+      enabled: true
   config:
     receivers:
       otlp:
@@ -15,10 +22,6 @@ spec:
             endpoint: 127.0.0.1:4318
 
     exporters:
-      otlp:
-        endpoint: "tempo.monitoring.svc.cluster.local:4317"
-        tls:
-          insecure: true
       debug: {}
 
     service:
@@ -35,7 +38,6 @@ spec:
             - otlp
         traces:
           exporters:
-            - otlp
             - debug
           receivers:
             - otlp
