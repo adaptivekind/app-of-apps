@@ -3,11 +3,14 @@ kind: ServiceMonitor
 metadata:
   name: example-otel-instrumentation
   namespace: examples
+  # The release label must be set so that the scrape config is configured by
+  # the Prometheus operator
   labels:
     release: prometheus
 spec:
   selector:
     matchLabels:
-      app: example-otel-instrumentation
+      # This label must be present in the service providing the metrics
+      service: example-otel-instrumentation
   endpoints:
   - port: http-metrics
