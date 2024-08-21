@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sample-traces
+  namespace: monitoring
+spec:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      ttlSecondsAfterFinished: 3600
+      template:
+        metadata:
+          annotations:
+            sidecar.opentelemetry.io/inject: "monitoring/opentelemetry-collector"
+        spec:
+          containers:
+            - name: traces
+              image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:v0.96.0
+              args:
+                - traces
+                - --otlp-insecure
+                - --rate
+                - "20"
+                - --duration
+                - 5s
+                - --otlp-endpoint
+                - 127.0.0.1:4317
+          restartPolicy: Never
