@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.opentelemetry.io/inject: "true"
+        sidecar.opentelemetry.io/inject: "monitoring/opentelemetry-collector"
       labels:
         app: example-otel-instrumentation
     spec:
