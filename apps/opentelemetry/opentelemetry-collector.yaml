@@ -19,6 +19,16 @@ spec:
 
     service:
       pipelines:
+        metrics:
+          exporters:
+            - debug
+          receivers:
+            - otlp
+        logs:
+          exporters:
+            - debug
+          receivers:
+            - otlp
         traces:
           exporters:
             - debug
