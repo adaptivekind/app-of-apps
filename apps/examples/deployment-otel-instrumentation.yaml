@@ -15,7 +15,7 @@ spec:
         app: example-otel-instrumentation
     spec:
       containers:
-        - image: ghcr.io/adaptivekind/example-otel-instrumentation:latest
+        - image: ghcr.io/adaptivekind/example-otel-instrumentation-express:latest
           name: example-otel-instrumentation
           env:
             - name: OTEL_TRACES_EXPORTER
