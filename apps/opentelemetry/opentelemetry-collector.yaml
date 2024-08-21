@@ -4,7 +4,7 @@ metadata:
   name: opentelemetry-collector
   namespace: monitoring
 spec:
-  mode: Sidecar
+  mode: sidecar
   config:
     receivers:
       otlp:
