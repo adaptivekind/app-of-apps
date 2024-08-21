@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: example-otel-instrumentation
   namespace: examples
+  labels:
+    app: example-otel-instrumentation
 spec:
   ports:
     - name: api
