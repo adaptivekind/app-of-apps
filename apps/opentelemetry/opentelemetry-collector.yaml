@@ -45,16 +45,16 @@ spec:
     service:
       pipelines:
         metrics:
-          exporters:
-            - debug
           receivers:
             - otlp
             - hostmetrics
-        logs:
           exporters:
             - debug
+        logs:
           receivers:
             - otlp
+          exporters:
+            - debug
         traces:
           exporters:
             - otlp

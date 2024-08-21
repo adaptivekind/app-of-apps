@@ -15,14 +15,12 @@ spec:
         app: example-otel-instrumentation
     spec:
       containers:
-        - image: ghcr.io/adaptivekind/example-otel-instrumentation-express:latest
+        - image: ghcr.io/adaptivekind/example-otel-instrumentation-express:1.0.1
           name: example-otel-instrumentation
           env:
             - name: OTEL_TRACES_EXPORTER
               value: otlp
             - name: OTEL_METRICS_EXPORTER
               value: otlp
-            - name: NODE_OPTIONS
-              value: "--require @opentelemetry/auto-instrumentations-node/register"
             - name: OTEL_NODE_RESOURCE_DETECTORS
               value: env,host,os,serviceinstance
