@@ -40,6 +40,9 @@ spec:
         endpoint: "tempo.monitoring.svc.cluster.local:4317"
         tls:
           insecure: true
+      prometheus:
+        endpoint: 127.0.0.1:8889
+        namespace: default
       debug: {}
 
     service:
@@ -50,6 +53,7 @@ spec:
             - hostmetrics
           exporters:
             - debug
+            - prometheus
         logs:
           receivers:
             - otlp
