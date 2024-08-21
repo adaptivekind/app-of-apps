@@ -7,7 +7,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: dashboard
     name: in-cluster
   project: default
   source:
@@ -17,3 +17,5 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace=true

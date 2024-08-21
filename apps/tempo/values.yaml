@@ -1,0 +1,16 @@
+minio:
+  enabled: true
+  mode: standalone
+  rootUser: grafana-tempo
+  rootPassword: supersecret
+  buckets:
+    # Default Tempo storage bucket
+    - name: tempo-traces
+      policy: none
+      purge: false
+traces:
+  otlp:
+    grpc:
+      enabled: true
+    http:
+      enabled: true
