@@ -11,7 +11,7 @@ spec:
     - name: collector-metrics
       port: 8888
       targetPort: 8888
-    - name: metrics
+    - name: http-metrics
       port: 8889
       targetPort: 8889
   selector:

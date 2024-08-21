@@ -10,4 +10,4 @@ spec:
     matchLabels:
       app: otel-instrumentation
   endpoints:
-  - port: metrics
+  - port: http-metrics
