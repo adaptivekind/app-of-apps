@@ -1,2 +1,5 @@
 grafana:
   enabled: false
+prometheusSpec:
+  additionalArgs:
+    - --log.level=debug
