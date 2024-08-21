@@ -3,6 +3,8 @@ kind: ServiceMonitor
 metadata:
   name: otel-instrumentation
   namespace: examples
+  labels:
+    release: prometheus
 spec:
   selector:
     matchLabels:
