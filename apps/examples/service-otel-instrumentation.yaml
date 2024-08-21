@@ -5,9 +5,12 @@ metadata:
   namespace: examples
 spec:
   ports:
-    - name: otel-instrumentation
+    - name: api
       port: 3000
       targetPort: 3000
+    - name: metrics
+      port: 8888
+      targetPort: 8888
   selector:
     app: example-otel-instrumentation
   type: ClusterIP
