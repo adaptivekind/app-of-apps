@@ -17,6 +17,12 @@ config:
             - abbr: GH
               href: https://github.com/adaptivekind/app-of-apps
     - lab:
+        - ArgoCD:
+            - abbr: AR
+              href: https://argocd.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
+        - Grafana:
+            - abbr: GR
+              href: https://grafana.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
         - PiHole:
             - abbr: PH
               href: https://pihole.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
