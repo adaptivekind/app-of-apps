@@ -4,4 +4,4 @@ metadata:
   name: homepage-configmap
   namespace: homepage
 data:
-  LAB_DOMAIN: test.com
+  HOMEPAGE_VAR_LAB_DOMAIN: test.com
