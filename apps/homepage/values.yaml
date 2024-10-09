@@ -5,11 +5,21 @@ enableRbac: true
 serviceAccount:
   name: homepage
   create: true
-
+envFrom:
+  - configMapRef:
+      name: homepage-configmap
 config:
   kubernetes:
     mode: cluster
-  bookmarks: {}
+  bookmarks:
+    - developer:
+        - Github:
+            - abbr: GH
+              href: https://github.com/adaptivekind/app-of-apps
+    - lab:
+        - PiHole:
+            - abbr: PH
+              href: https://pihole.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
   services: {}
   widgets:
     - kubernetes:
