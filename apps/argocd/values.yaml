@@ -1,0 +1,24 @@
+applicationSet:
+  metrics:
+    enabled: true
+    service:
+      labels:
+        "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
+controller:
+  metrics:
+    enabled: true
+dex:
+  metrics:
+    enabled: true
+redis:
+  metrics:
+    enabled: true
+    service:
+      labels:
+        "app.kubernetes.io/name": "argocd-redis-metrics"
+repoServer:
+  metrics:
+    enabled: true
+server:
+  metrics:
+    enabled: true
