@@ -23,6 +23,9 @@ config:
         - Grafana:
             - abbr: GR
               href: https://grafana.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
+        - Prometheus:
+            - abbr: PR
+              href: https://prometheus.purplepip.com/
         - PiHole:
             - abbr: PH
               href: https://pihole.{{HOMEPAGE_VAR_LAB_DOMAIN}}/
