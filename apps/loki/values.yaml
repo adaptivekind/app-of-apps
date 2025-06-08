@@ -3,6 +3,8 @@
 # for how they are set in the chart (there are subtle differences)
 deploymentMode: SingleBinary
 loki:
+  image:
+    tag: 3.5.1
   auth_enabled: false
   commonConfig:
     replication_factor: 1
