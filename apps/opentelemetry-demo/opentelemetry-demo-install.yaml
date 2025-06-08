@@ -17,7 +17,5 @@ spec:
     name: in-cluster
     namespace: opentelemetry-demo
   syncPolicy:
-    automated:
-      prune: true
     syncOptions:
       - CreateNamespace=true

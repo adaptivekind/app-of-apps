@@ -21,7 +21,5 @@ spec:
     name: in-cluster
     namespace: monitoring
   syncPolicy:
-    automated:
-      prune: true
     syncOptions:
       - CreateNamespace=true

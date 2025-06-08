@@ -15,9 +15,6 @@ spec:
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/instance: my-argocd-application-name

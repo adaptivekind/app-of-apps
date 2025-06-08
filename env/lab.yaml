@@ -10,7 +10,3 @@ spec:
   source:
     path: env/lab
     repoURL: https://github.com/adaptivekind/app-of-apps.git
-  syncPolicy:
-    automated: {}
-    syncOptions:
-    - Prune=true

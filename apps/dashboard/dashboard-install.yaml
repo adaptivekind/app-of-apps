@@ -18,7 +18,5 @@ spec:
     name: in-cluster
     namespace: dashboard
   syncPolicy:
-    automated:
-      prune: true
     syncOptions:
       - CreateNamespace=true

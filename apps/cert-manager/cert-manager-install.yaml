@@ -24,7 +24,5 @@ spec:
     name: in-cluster
     namespace: cert-manager
   syncPolicy:
-    automated:
-      prune: true
     syncOptions:
       - CreateNamespace=true
