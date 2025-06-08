@@ -5,3 +5,4 @@ alertmanager:
 prometheusSpec:
   additionalArgs:
     - --log.level=info
+  scrapeInterval: 60s
