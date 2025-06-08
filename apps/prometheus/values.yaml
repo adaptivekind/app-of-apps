@@ -4,4 +4,4 @@ alertmanager:
   enabled: false
 prometheusSpec:
   additionalArgs:
-    - --log.level=debug
+    - --log.level=info
