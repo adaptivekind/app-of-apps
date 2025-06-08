@@ -1,5 +1,7 @@
 grafana:
   enabled: false
+alertmanager:
+  enabled: false
 prometheusSpec:
   additionalArgs:
     - --log.level=debug
