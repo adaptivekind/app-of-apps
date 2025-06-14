@@ -13,6 +13,6 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: apps/argocd-install
+    path: apps/argocd
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
