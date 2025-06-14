@@ -1,25 +1,25 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 applicationSet:
   metrics:
-    enabled: true
+    enabled: false
     service:
       labels:
         "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
 controller:
   metrics:
-    enabled: true
+    enabled: false
 dex:
   metrics:
-    enabled: true
+    enabled: false
 redis:
   metrics:
-    enabled: true
+    enabled: false
     service:
       labels:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
   metrics:
-    enabled: true
+    enabled: false
 server:
   metrics:
-    enabled: true
+    enabled: false
