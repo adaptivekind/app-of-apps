@@ -11,7 +11,7 @@ spec:
       helm:
         releaseName: argocd
         valueFiles:
-          - $values/apps/argocd/values.yaml
+          - $values/apps/argocd-install/values.yaml
     - repoURL: https://github.com/adaptivekind/app-of-apps
       targetRevision: HEAD
       ref: values
