@@ -1,6 +1,9 @@
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 grafana:
   enabled: false
 alertmanager:
+  enabled: false
+nodeExporter:
   enabled: false
 defaultRules:
   create: false
