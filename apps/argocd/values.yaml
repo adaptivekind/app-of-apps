@@ -23,3 +23,9 @@ repoServer:
 server:
   metrics:
     enabled: false
+configs:
+  cm:
+    params:
+      # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
+      controller.status.processors: 5
+      controller.operation.processors: 3
