@@ -1,18 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik-extras
+  name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "2"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: kube-system
+    namespace: argocd
     name: in-cluster
   project: default
   source:
-    path: apps/traefik
+    path: apps/argocd
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
+
