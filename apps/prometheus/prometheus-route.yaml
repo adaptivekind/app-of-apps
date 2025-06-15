@@ -26,7 +26,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostRegexp(`prometheus{[^\.]*}.{domain:[a-z\.]+}`)
+    - match: HostRegexp(`prometheus.{domain:[a-z\.]+}`)
       kind: Rule
       services:
         - name: prometheus-kube-prometheus-prometheus
