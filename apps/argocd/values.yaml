@@ -28,5 +28,5 @@ configs:
     timeout.reconciliation: 3600s
   params:
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
-    controller.status.processors: 5
-    controller.operation.processors: 3
+    controller.status.processors: 1
+    controller.operation.processors: 1
