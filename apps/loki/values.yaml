@@ -21,8 +21,10 @@ loki:
         schema: v13
   frontend:
     address: 127.0.0.1
-  ui:
-    enabled:true
+  # Test https://github.com/grafana/loki/pull/17562 when version
+  # after 3.5.1 released
+  # ui:
+  #   enabled: true
 singleBinary:
   replicas: 1
 read:
