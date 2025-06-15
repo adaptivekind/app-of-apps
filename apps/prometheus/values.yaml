@@ -19,7 +19,7 @@ prometheus:
           password:
             name: remote-prometheus-write-credentials
             key: password
-        queue_config:
-          max_backoff: "60s"
-          sample_age_limit: "1h"
-          max_samples_per_send: 5000
+        queueConfig:
+          maxBackoff: "60s"
+          sampleAgeLimit: "1h"
+          maxSamplesPerSend: 5000
