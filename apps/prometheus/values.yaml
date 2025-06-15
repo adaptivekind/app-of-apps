@@ -9,11 +9,16 @@ kubeApiServer:
   enabled: true
   serviceMonitor:
     metricRelabelings:
+      # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_request.+'
-        sourceLabels:
-          - __name__
-          - le
+        regex: 'apiserver_(request|response).+'
+        sourceLabels: [__name__]
+      - action: drop
+        regex: 'etcd_request_.+'
+        sourceLabels: [__name__]
+      - action: drop
+        regex: 'workqueue_.+'
+        sourceLabels: [__name__]
 nodeExporter:
   enabled: true
 defaultRules:
