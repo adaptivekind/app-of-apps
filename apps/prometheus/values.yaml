@@ -5,13 +5,25 @@ alertmanager:
   enabled: false
 kubelet:
   enabled: true
+  serviceMonitor:
+    metricRelabelings:
+      # Drop metrics with a lot of series
+      - action: drop
+        regex: 'apiserver_(request|response)_.+'
+        sourceLabels: [__name__]
+      - action: drop
+        regex: 'etcd_request_.+'
+        sourceLabels: [__name__]
+      - action: drop
+        regex: 'workqueue_.+'
+        sourceLabels: [__name__]
 kubeApiServer:
   enabled: true
   serviceMonitor:
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_(request|response).+'
+        regex: 'apiserver_(request|response)_.+'
         sourceLabels: [__name__]
       - action: drop
         regex: 'etcd_request_.+'
