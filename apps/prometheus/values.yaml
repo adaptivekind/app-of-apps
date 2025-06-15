@@ -23,3 +23,14 @@ prometheus:
           maxBackoff: "60s"
           sampleAgeLimit: "1h"
           maxSamplesPerSend: 5000
+        writeRelabelConfigs:
+          # Drop series with specific metric names
+          - sourceLabels: [__name__]
+            regex: "apiserver_.*"
+            action: drop
+          - sourceLabels: [__name__]
+            regex: "etcd_.*"
+            action: drop
+          - sourceLabels: [__name__]
+            regex: "workqueue_.*"
+            action: drop
