@@ -6,7 +6,7 @@ alertmanager:
 kubelet:
   enabled: false
 kubeApiServer:
-  enabled: false
+  enabled: true
 nodeExporter:
   enabled: true
 defaultRules:
