@@ -4,7 +4,7 @@ grafana:
 alertmanager:
   enabled: false
 nodeExporter:
-  enabled: false
+  enabled: true
 defaultRules:
   create: false
 prometheusSpec:
