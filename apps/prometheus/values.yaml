@@ -25,15 +25,9 @@ prometheus:
           maxSamplesPerSend: 5000
         writeRelabelConfigs:
           # Drop series with specific metric names
-          - sourceLabels: [__name__]
-            regex: "apiserver_.*"
+          - sourceLabels: [job]
+            regex: kubelet
             action: drop
-          - sourceLabels: [__name__]
-            regex: "etcd_.*"
-            action: drop
-          - sourceLabels: [__name__]
-            regex: "workqueue_.*"
-            action: drop
-          - sourceLabels: [__name__]
-            regex: "rest_client_.*"
+          - sourceLabels: [job]
+            regex: apiserver
             action: drop
