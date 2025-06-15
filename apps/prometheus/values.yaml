@@ -9,10 +9,10 @@ kubelet:
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_(admission|flowcontrol|request|response|storage|watch)_.+'
+        regex: 'apiserver_(admission|cache|flowcontrol|request|response|storage|watch)_.+'
         sourceLabels: [__name__]
       - action: drop
-        regex: 'etcd_request_.+'
+        regex: 'etcd_.+'
         sourceLabels: [__name__]
       - action: drop
         regex: 'kubelet_.+'
@@ -38,10 +38,10 @@ kubeApiServer:
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_(admission|flowcontrol|request|response|storage|watch)_.+'
+        regex: 'apiserver_(admission|cache|flowcontrol|request|response|storage|watch)_.+'
         sourceLabels: [__name__]
       - action: drop
-        regex: 'etcd_request_.+'
+        regex: 'etcd_.+'
         sourceLabels: [__name__]
       - action: drop
         regex: 'kubelet_.+'
