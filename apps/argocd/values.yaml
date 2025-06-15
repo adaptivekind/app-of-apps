@@ -1,28 +1,28 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 applicationSet:
   metrics:
-    enabled: false
+    enabled: true
     service:
       labels:
         "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
 controller:
   metrics:
-    enabled: false
+    enabled: true
 dex:
   metrics:
-    enabled: false
+    enabled: true
 redis:
   metrics:
-    enabled: false
+    enabled: true
     service:
       labels:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
   metrics:
-    enabled: false
+    enabled: true
 server:
   metrics:
-    enabled: false
+    enabled: true
 configs:
   cm:
     timeout.reconciliation: 3600s
