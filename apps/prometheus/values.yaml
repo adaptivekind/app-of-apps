@@ -9,8 +9,6 @@ defaultRules:
   create: false
 prometheus:
   prometheusSpec:
-    additionalArgs:
-      - --log.level=info
     scrapeInterval: 60s
     remoteWrite:
       - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
