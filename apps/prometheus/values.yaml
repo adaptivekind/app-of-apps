@@ -9,7 +9,7 @@ kubelet:
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_(request|response)_.+'
+        regex: 'apiserver_(request|response|watch)_.+'
         sourceLabels: [__name__]
       - action: drop
         regex: 'etcd_request_.+'
@@ -23,7 +23,7 @@ kubeApiServer:
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
-        regex: 'apiserver_(request|response)_.+'
+        regex: 'apiserver_(request|response|watch)_.+'
         sourceLabels: [__name__]
       - action: drop
         regex: 'etcd_request_.+'
