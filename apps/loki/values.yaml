@@ -21,6 +21,12 @@ loki:
         schema: v13
   frontend:
     address: 127.0.0.1
+    max_outstanding_per_tenant: 1
+    parallelise_shardable_queries: false
+  query_scheduler:
+    max_outstanding_requests_per_tenant: 1
+  limits_config:
+    split_queries_by_interval: 0
   # Test https://github.com/grafana/loki/pull/17562 when version
   # after 3.5.1 released
   # ui:
