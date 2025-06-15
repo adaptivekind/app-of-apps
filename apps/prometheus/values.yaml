@@ -7,6 +7,13 @@ kubelet:
   enabled: false
 kubeApiServer:
   enabled: true
+  serviceMonitor:
+    metricRelabelings:
+      - action: drop
+        regex: 'apiserver_request.+'
+        sourceLabels:
+          - __name__
+          - le
 nodeExporter:
   enabled: true
 defaultRules:
