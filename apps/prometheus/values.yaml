@@ -7,16 +7,17 @@ nodeExporter:
   enabled: true
 defaultRules:
   create: false
-prometheusSpec:
-  additionalArgs:
-    - --log.level=info
-  scrapeInterval: 60s
-  remoteWrite:
-    - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
-      basicAuth:
-        username:
-          name: remote-prometheus-write-credentials
-          key: username
-        password:
-          name: remote-prometheus-write-credentials
-          key: password
+prometheus:
+  prometheusSpec:
+    additionalArgs:
+      - --log.level=info
+    scrapeInterval: 60s
+    remoteWrite:
+      - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+        basicAuth:
+          username:
+            name: remote-prometheus-write-credentials
+            key: username
+          password:
+            name: remote-prometheus-write-credentials
+            key: password
