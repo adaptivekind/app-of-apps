@@ -31,6 +31,8 @@ loki:
   # after 3.5.1 released
   # ui:
   #   enabled: true
+gateway:
+  verboseLogging: false
 sidecar:
   rules:
     logLevel: ERROR
