@@ -24,6 +24,8 @@ loki:
         schema: v13
   frontend:
     address: 127.0.0.1
+  server:
+    log_level: warn
   #   max_outstanding_per_tenant: 1
   #   parallelise_shardable_queries: false
   # query_scheduler:
