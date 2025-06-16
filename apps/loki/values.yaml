@@ -46,3 +46,5 @@ write:
   replicas: 0
 chunksCache:
   allocatedMemory: 1024
+lokiCanary:
+  enabled: false
