@@ -47,6 +47,9 @@ kubeApiServer:
         regex: 'kubelet_.+'
         sourceLabels: [__name__]
       - action: drop
+        regex: 'prober_.+'
+        sourceLabels: [__name__]
+      - action: drop
         regex: 'rest_client_.+'
         sourceLabels: [__name__]
       - action: drop
