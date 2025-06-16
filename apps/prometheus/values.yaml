@@ -32,6 +32,15 @@ kubelet:
       - action: drop
         regex: 'workqueue_.+'
         sourceLabels: [__name__]
+      - source_labels: [le]
+        regex: "2.5"
+        action: "drop"
+      - source_labels: [le]
+        regex: "0.25"
+        action: "drop"
+      - source_labels: [le]
+        regex: "0.025"
+        action: "drop"
 kubeApiServer:
   enabled: true
   serviceMonitor:
