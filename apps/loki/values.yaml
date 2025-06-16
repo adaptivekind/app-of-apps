@@ -25,8 +25,8 @@ loki:
   #   parallelise_shardable_queries: false
   # query_scheduler:
   #   max_outstanding_requests_per_tenant: 1
-  limits_config:
-    split_queries_by_interval: 0
+  # limits_config:
+  #   split_queries_by_interval: 0
   # Test https://github.com/grafana/loki/pull/17562 when version
   # after 3.5.1 released
   # ui:
@@ -34,10 +34,10 @@ loki:
 singleBinary:
   replicas: 1
 read:
-  replicas: 1
+  replicas: 0
 backend:
-  replicas: 1
+  replicas: 0
 write:
-  replicas: 1
+  replicas: 0
 chunksCache:
   allocatedMemory: 1024
