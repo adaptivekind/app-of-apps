@@ -6,7 +6,6 @@ alertmanager:
 kubelet:
   enabled: true
   serviceMonitor:
-    probes: false
     metricRelabelings:
       # Drop metrics with a lot of series
       - action: drop
