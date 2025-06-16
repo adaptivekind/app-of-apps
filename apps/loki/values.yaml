@@ -2,6 +2,7 @@
 # See https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
 # for how they are set in the chart (there are subtle differences)
 deploymentMode: SingleBinary
+extraArgs: "-log.level warn"
 loki:
   image:
     tag: 3.5.1
