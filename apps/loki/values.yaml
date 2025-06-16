@@ -31,6 +31,9 @@ loki:
   # after 3.5.1 released
   # ui:
   #   enabled: true
+sidecar:
+  rules:
+    logLevel: ERROR
 singleBinary:
   replicas: 1
 read:
