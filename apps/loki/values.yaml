@@ -36,6 +36,9 @@ loki:
   # after 3.5.1 released
   # ui:
   #   enabled: true
+querier:
+  extraArgs:
+    - -max_concurrent 1
 gateway:
   verboseLogging: false
 sidecar:
