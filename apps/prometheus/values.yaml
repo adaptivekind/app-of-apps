@@ -77,7 +77,7 @@ defaultRules:
   create: false
 prometheus:
   prometheusSpec:
-    scrapeInterval: 60s
+    scrapeInterval: 30s
     enableAdminAPI: true
     remoteWrite:
       - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
