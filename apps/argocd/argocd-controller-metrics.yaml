@@ -2,7 +2,7 @@
 # kind: ServiceMonitor
 # metadata:
 #   namespace: argocd
-#   name: argocd-controller-metrics
+#   name: argocd-application-controller-metrics
 #   labels:
 #     release: prometheus
 # spec:
