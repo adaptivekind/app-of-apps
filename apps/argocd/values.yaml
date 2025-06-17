@@ -13,6 +13,8 @@ controller:
   # revisionHistoryLimit: 3
   metrics:
     enabled: true
+  env:
+    - ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT=60
 dex:
   metrics:
     enabled: true
@@ -35,3 +37,4 @@ configs:
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
     controller.status.processors: 1
     controller.operation.processors: 1
+    controller.repo.server.timeout.seconds: 300
