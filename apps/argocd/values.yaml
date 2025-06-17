@@ -14,7 +14,8 @@ controller:
   metrics:
     enabled: true
   env:
-    ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT: 60
+    - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
+      value: 60
 dex:
   metrics:
     enabled: true
