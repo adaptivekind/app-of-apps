@@ -3,6 +3,8 @@ grafana:
   enabled: false
 alertmanager:
   enabled: false
+service:
+  enabled: false
 kubelet:
   enabled: true
   serviceMonitor:
