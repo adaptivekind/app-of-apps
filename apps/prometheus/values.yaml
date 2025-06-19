@@ -5,6 +5,8 @@ alertmanager:
   enabled: false
 service:
   enabled: false
+kubeStateMetrics:
+  enabled: false
 kubelet:
   enabled: true
   serviceMonitor:
