@@ -16,3 +16,6 @@ spec:
     path: apps/cert-manager
     repoURL: https://github.com/adaptivekind/app-of-apps
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
