@@ -1,7 +1,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: k8s-views-global
+  name: prometheus-metrics
 spec:
   folder: prometheus
   instanceSelector:
