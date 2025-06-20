@@ -3,7 +3,7 @@ kind: GrafanaDashboard
 metadata:
   name: argocd-grafana-dashboard
 spec:
-  folder: "kubernetes"
+  folder: "ArgoCD"
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
