@@ -47,7 +47,7 @@ kubelet:
         regex: '0.025'
         action: drop
 kubeApiServer:
-  enabled: true
+  enabled: false
   serviceMonitor:
     metricRelabelings:
       # Drop metrics with a lot of series
