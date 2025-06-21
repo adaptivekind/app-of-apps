@@ -3,9 +3,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-views-namespaces
 spec:
-  folder: "kubernetes"
+  folder: kubernetes
   instanceSelector:
     matchLabels:
-      dashboards: "grafana"
-  url: "https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json"
+      dashboards: grafana
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
   contentCacheDuration: 168h
