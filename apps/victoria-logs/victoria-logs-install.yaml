@@ -10,8 +10,6 @@ spec:
       targetRevision: "*"
       helm:
         releaseName: victoria-logs
-        valueFiles:
-          - $values/apps/victoria-logs/values.yaml
   project: default
   destination:
     name: in-cluster
