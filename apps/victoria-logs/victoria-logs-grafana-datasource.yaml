@@ -13,5 +13,5 @@ spec:
     access: proxy
     isDefault: true
   plugins:
-    - victoriametrics-logs-datasource
+    - name: victoriametrics-logs-datasource
 
