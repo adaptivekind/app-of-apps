@@ -13,6 +13,8 @@ dashboardProviders:
       editable: true
       options:
         path: /var/lib/grafana/dashboards/grafana-dashboards-kubernetes
+plugins:
+  - victoriametrics-logs-datasource
 dashboards:
   grafana-dashboards-kubernetes:
     k8s-system-api-server:
