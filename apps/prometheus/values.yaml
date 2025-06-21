@@ -97,10 +97,6 @@ prometheus:
           sampleAgeLimit: "1h"
           maxSamplesPerSend: 5000
         writeRelabelConfigs:
-          # Drop series with specific metric names
-          - sourceLabels: [job]
-            regex: kubelet
-            action: drop
-          - sourceLabels: [job]
-            regex: apiserver
-            action: drop
+          - sourceLabels: [__name__]
+            regex: '(node_cpu|node_memory|container_cpu|container_memory)_.+'
+            action: keep
