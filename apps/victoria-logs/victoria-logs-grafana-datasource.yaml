@@ -9,7 +9,7 @@ spec:
   datasource:
     name: victoria-logs
     type: victoriametrics-logs-datasource
-    url: http://victoria-logs-victoria-logs-single-server.victoria.svc.cluster.local:3100
+    url: http://victoria-logs-victoria-logs-single-server.victoria.svc.cluster.local:9438
     access: proxy
     isDefault: true
   plugins:
