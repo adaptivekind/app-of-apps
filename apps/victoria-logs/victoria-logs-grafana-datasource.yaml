@@ -12,4 +12,6 @@ spec:
     url: http://victoria-logs-victoria-logs-single-server.victoria.svc.cluster.local:3100
     access: proxy
     isDefault: true
+  plugins:
+    - victoriametrics-logs-datasource
 
