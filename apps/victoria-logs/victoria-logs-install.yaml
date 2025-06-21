@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: victoria-logs-install
+  namespace: argocd
+spec:
+  sources:
+    - chart: victoria-logs-single
+      repoURL: oci://ghcr.io/victoriametrics/helm-charts
+      targetRevision: "*"
+      helm:
+        releaseName: victoria-logs
+        valueFiles:
+          - $values/apps/victoria-logs/values.yaml
+    - repoURL: https://github.com/adaptivekind/app-of-apps
+      targetRevision: HEAD
+      ref: values
+  project: default
+  destination:
+    name: in-cluster
+    namespace: victoria
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+

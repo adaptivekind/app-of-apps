@@ -1,0 +1,12 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: victoria-logs-route
+  namespace: victoria
+spec:
+  routes:
+    - match: HostRegexp(`victoria-logs.{domain:[a-z\.]+}`)
+      kind: Rule
+      services:
+        - name: victoria-logs
+          port: 3100
