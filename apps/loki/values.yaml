@@ -34,6 +34,14 @@ loki:
     max_concurrent: 1
   limits_config:
     split_queries_by_interval: 0
+    split_metadata_queries_by_interval: 0
+    split_recent_metadata_queries_by_interval: 0
+    split_instant_metric_queries_by_interval: 0
+    split_ingester_queries_by_interval: 0
+    ruler_enable_wal_replay: false
+    max_line_size: 16KB
+    max_global_streams_per_user: 100
+    retention_period: 1h
   # Test https://github.com/grafana/loki/pull/17562 when version
   # after 3.5.1 released
   # ui:
