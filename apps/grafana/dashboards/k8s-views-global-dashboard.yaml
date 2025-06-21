@@ -8,3 +8,4 @@ spec:
     matchLabels:
       dashboards: "grafana"
   url: "https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json"
+  contentCacheDuration: 168h
