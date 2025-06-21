@@ -1,2 +1,3 @@
+# https://github.com/VictoriaMetrics/helm-charts/blob/master/charts/victoria-logs-single/values.yaml
 dashboards:
   enabled: true

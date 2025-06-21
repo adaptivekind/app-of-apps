@@ -5,16 +5,13 @@ metadata:
   namespace: argocd
 spec:
   sources:
-    - chart: victoria-logs-single
+    - chart: victoria-metrics-operator
       repoURL: ghcr.io/victoriametrics/helm-charts
       targetRevision: "*"
       helm:
         releaseName: victoria-logs
         valueFiles:
           - $values/apps/victoria-logs/values.yaml
-    - repoURL: https://github.com/adaptivekind/app-of-apps
-      targetRevision: HEAD
-      ref: values
   project: default
   destination:
     name: in-cluster
