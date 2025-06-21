@@ -1,0 +1,15 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: victoria-logs-grafana-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: victoria-logs
+    type: victoriametrics-logs-datasource
+    url: http://victoria-logs-victoria-logs-single-server.victoria.svc.cluster.local:3100
+    access: proxy
+    isDefault: true
+
