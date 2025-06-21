@@ -1,5 +1,5 @@
 apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMSingle
+kind: VLSingle
 metadata:
   name: victoria-logs
   namespace: victoria
