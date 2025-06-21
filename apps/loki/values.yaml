@@ -55,7 +55,10 @@ backend:
 write:
   replicas: 0
 chunksCache:
-  allocatedMemory: 1024
+  allocatedMemory: 512
+  writeBackSizeLimit: 100MB
+  parallelism: 1
+  maxItemMemory: 1
 test:
   enabled: false
 lokiCanary:
