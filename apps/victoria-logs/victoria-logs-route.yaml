@@ -8,5 +8,5 @@ spec:
     - match: HostRegexp(`victoria-logs.{domain:[a-z\.]+}`)
       kind: Rule
       services:
-        - name: victoria-logs-victoria-logs-single-server
-          port: 9428
+        - name: vmsingle-victoria-logs
+          port: 8429

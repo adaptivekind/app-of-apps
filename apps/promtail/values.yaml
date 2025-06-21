@@ -1,6 +1,6 @@
 config:
   clients:
-    - url: http://victoria-logs-victoria-logs-single-server.victoria.svc.cluster.local:9438/insert/loki/api/v1/push
+    - url: http://vmsingle-victoria-logs.victoria.svc.cluster.local:9438/insert/loki/api/v1/push
       external_labels:
         collector: promtail
 relabel_configs:
