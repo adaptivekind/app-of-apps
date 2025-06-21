@@ -98,12 +98,5 @@ prometheus:
           maxSamplesPerSend: 5000
         writeRelabelConfigs:
           - sourceLabels: [__name__]
-            regex: (container_cpu_usage_seconds_total|container_memory_working_set_bytes)
+            regex: (node_cpu_*|node_memory_*|container_cpu_*|container_memory_*)
             action: keep
-          # Drop series with specific metric names
-          - sourceLabels: [job]
-            regex: kubelet
-            action: drop
-          - sourceLabels: [job]
-            regex: apiserver
-            action: drop
