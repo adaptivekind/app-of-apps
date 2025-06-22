@@ -4,7 +4,7 @@ global:
     level: warn
 applicationSet:
   metrics:
-    enabled: true
+    enabled: false
     service:
       labels:
         "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
@@ -12,25 +12,25 @@ controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
   metrics:
-    enabled: true
+    enabled: false
   env:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "60"
 dex:
   metrics:
-    enabled: true
+    enabled: false
 redis:
   metrics:
-    enabled: true
+    enabled: false
     service:
       labels:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
   metrics:
-    enabled: true
+    enabled: false
 server:
   metrics:
-    enabled: true
+    enabled: false
 configs:
   cm:
     timeout.reconciliation: 3600s
