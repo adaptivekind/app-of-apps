@@ -13,9 +13,9 @@ controller:
   # revisionHistoryLimit: 3
   metrics:
     enabled: true
-  extraArgs:
-    - --app-resync 3600
-    - --app-resync-jitter 300
+  # extraArgs:
+  #   - --app-resync 3600
+  #   - --app-resync-jitter 300
   env:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "360"
@@ -37,7 +37,7 @@ server:
     enabled: false
 configs:
   cm:
-    timeout.reconciliation: 1d
+    timeout.reconciliation: 24h
     timeout.reconciliation.jitter: 1h
   params:
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
