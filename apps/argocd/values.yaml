@@ -10,7 +10,7 @@ applicationSet:
         "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
 controller:
   # heartbeatTime: 20
-  revisionHistoryLimit: 3
+  # revisionHistoryLimit: 3
   metrics:
     enabled: false
   env:
