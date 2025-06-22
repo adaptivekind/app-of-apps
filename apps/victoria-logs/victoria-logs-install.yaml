@@ -7,7 +7,7 @@ spec:
   sources:
     - chart: victoria-metrics-operator
       repoURL: ghcr.io/victoriametrics/helm-charts
-      targetRevision: "*"
+      targetRevision: 0.49.2
       helm:
         releaseName: victoria-logs
   project: default

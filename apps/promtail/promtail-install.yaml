@@ -9,7 +9,7 @@ spec:
   sources:
     - chart: promtail
       repoURL: https://grafana.github.io/helm-charts
-      targetRevision: "*"
+      targetRevision: 6.17.0 
       helm:
         releaseName: promtail
         valueFiles:
