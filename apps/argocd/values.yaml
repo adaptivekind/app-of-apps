@@ -12,7 +12,7 @@ controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
   metrics:
-    enabled: false
+    enabled: true
   env:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "60"
