@@ -13,6 +13,9 @@ controller:
   # revisionHistoryLimit: 3
   metrics:
     enabled: true
+  extraArgs:
+    - --app-resync 3600
+    - --app-resync-jitter 300
   env:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "360"
