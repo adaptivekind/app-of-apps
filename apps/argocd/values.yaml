@@ -9,8 +9,8 @@ applicationSet:
       labels:
         "app.kubernetes.io/name": "argocd-applicationset-controller-metrics"
 controller:
-  # heartbeatTime: 20
-  # revisionHistoryLimit: 3
+  heartbeatTime: 20
+  revisionHistoryLimit: 3
   metrics:
     enabled: false
   env:
@@ -35,6 +35,7 @@ server:
 configs:
   cm:
     timeout.reconciliation: 3600s
+    timeout.reconciliation.jitter: 600s
   params:
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
     controller.status.processors: 1
