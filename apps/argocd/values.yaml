@@ -28,7 +28,7 @@ redis:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
   metrics:
-    enabled: false
+    enabled: true
 server:
   metrics:
     enabled: false
