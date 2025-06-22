@@ -34,10 +34,10 @@ server:
     enabled: false
 configs:
   cm:
-    timeout.reconciliation: 3600s
-    timeout.reconciliation.jitter: 600s
+    timeout.reconciliation: 1d
+    timeout.reconciliation.jitter: 1h
   params:
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#argocd-application-controller
     controller.status.processors: 1
     controller.operation.processors: 1
-    controller.repo.server.timeout.seconds: 300
+    controller.repo.server.timeout.seconds: 28800
