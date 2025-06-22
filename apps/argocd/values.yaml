@@ -17,6 +17,7 @@ controller:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "60"
 dex:
+  enabled: false
   metrics:
     enabled: false
 redis:
