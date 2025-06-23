@@ -9,24 +9,24 @@ spec:
     receivers:
       kubeletstats:
         collection_interval: 10s
-        auth_type: 'serviceAccount'
+        auth_type: serviceAccount
         endpoint: '${env:K8S_NODE_NAME}:10250'
         insecure_skip_verify: true
         metric_groups:
           - node
           - pod
           - container
-    filelog:
-      include:
-        - /var/log/pods/*/*/*.log
-      exclude:
-        - /var/log/pods/*/otel-collector/*.log
-      start_at: end
-      include_file_path: true
-      include_file_name: false
-      operators:
-        - type: container
-          id: container-parser
+      filelog:
+        include:
+          - /var/log/pods/*/*/*.log
+        exclude:
+          - /var/log/pods/*/otel-collector/*.log
+        start_at: end
+        include_file_path: true
+        include_file_name: false
+        operators:
+          - type: container
+            id: container-parser
 
     exporters:
       debug:
