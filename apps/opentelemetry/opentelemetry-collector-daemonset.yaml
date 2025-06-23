@@ -35,6 +35,13 @@ spec:
         send_batch_max_size: 1000
         send_batch_size: 500
         timeout: 180s
+      k8sattributes:
+        auth_type: "serviceAccount"
+        passthrough: false
+        extract:
+          metadata:
+            - k8s.pod.name
+            - k8s.namespace.name
 
     exporters:
       debug: {}
@@ -58,7 +65,8 @@ spec:
           exporters:
             - prometheusremotewrite
           processors:
-            - batch
+            - batch/metrics
+            - k8sattributes
           receivers:
             - kubeletstats
         logs:
