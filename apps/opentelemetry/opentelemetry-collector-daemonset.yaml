@@ -44,7 +44,7 @@ spec:
       pipelines:
         metrics:
           exporters:
-            - debug
+            - prometheus
           receivers:
             - kubeletstats
         logs:
