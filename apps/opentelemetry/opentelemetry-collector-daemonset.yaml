@@ -49,6 +49,6 @@ spec:
             - kubeletstats
         logs:
           exporters:
-            - debug
-          receivers:
             - otlphttp/victoriametrics
+          receivers:
+            - filelog
