@@ -71,10 +71,15 @@ spec:
         tls:
           insecure: true
       prometheusremotewrite:
+        external_labels:
+          collector: otel
         remote_write_queue:
           enabled: true
           num_consumers: 1
           queue_size: 500
+        resource_to_telemetry_conversion:
+          enabled: true
+        send_metadata: true
         endpoint: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/api/v1/write
         tls:
           insecure: true
