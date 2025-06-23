@@ -8,7 +8,7 @@ service:
 kubeStateMetrics:
   enabled: false
 kubelet:
-  enabled: true
+  enabled: false
   serviceMonitor:
     probes: false
     metricRelabelings:
