@@ -38,7 +38,9 @@ spec:
         tls:
           insecure: true
       prometheusremotewrite:
-        endpoint: https://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/api/v1/write
+        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/api/v1/write
+        tls:
+          insecure: true
 
     service:
       pipelines:
