@@ -54,3 +54,8 @@ spec:
             - otlphttp/victoriametrics
           receivers:
             - filelog
+        telemetry:
+          logs:
+            level: INFO
+            development: false
+            encoding: "json"
