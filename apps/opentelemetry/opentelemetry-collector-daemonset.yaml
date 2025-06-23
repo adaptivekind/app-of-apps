@@ -71,11 +71,11 @@ spec:
             - k8sattributes
           receivers:
             - kubeletstats
-        logs:
-          exporters:
-            - otlphttp/victoriametrics
-          receivers:
-            - filelog
+        # logs:
+        #   exporters:
+        #     - otlphttp/victoriametrics
+        #   receivers:
+        #     - filelog
         # telemetry:
         #   logs:
         #     level: INFO
