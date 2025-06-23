@@ -48,7 +48,7 @@ spec:
             - tag_name: app.label.component
               key: app.kubernetes.io/component
               from: pod
-        otel_annotations: true
+          otel_annotations: true
         pod_association:
           - sources:
               - from: resource_attribute
