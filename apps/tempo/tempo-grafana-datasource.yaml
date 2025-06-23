@@ -9,7 +9,7 @@ spec:
   datasource:
     name: tempo
     type: tempo
-    url: http://tempo.monitoring.svc.cluster.local:3100
+    url: http://tempo.tempo.svc.cluster.local:3100
     access: proxy
     jsonData:
       "tlsSkipVerify": true
