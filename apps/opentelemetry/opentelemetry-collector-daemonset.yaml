@@ -37,14 +37,14 @@ spec:
         logs_endpoint: http://vlsingle-victoria-logs.victoria-logs.svc.cluster.local:9428/insert/opentelemetry/v1/logs
         tls:
           insecure: true
-      prometheus:
-        endpoint: prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:8080
+      prometheusremotewrite:
+        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:8080/api/v1/write
 
     service:
       pipelines:
         metrics:
           exporters:
-            - prometheus
+            - prometheusremotewrite
           receivers:
             - kubeletstats
         logs:
