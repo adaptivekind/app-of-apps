@@ -31,6 +31,14 @@ spec:
     exporters:
       debug:
         verbosity: detailed
+      otlphttp/victoriametrics:
+        compression: gzip
+        encoding: proto
+        logs_endpoint: http://vlsingle-victoria-logs.victoria-logs.svc.cluster.local:9428/insert/opentelemetry/v1/logs
+        tls:
+          insecure: true
+      prometheus:
+        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.logcal:9090/api/v1/receive
 
     service:
       pipelines:
@@ -43,4 +51,4 @@ spec:
           exporters:
             - debug
           receivers:
-            - filelog
+            - otlphttp/victoriametrics
