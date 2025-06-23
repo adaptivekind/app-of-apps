@@ -38,7 +38,7 @@ spec:
         tls:
           insecure: true
       prometheus:
-        endpoint: prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.logcal:9090
+        endpoint: prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
 
     service:
       pipelines:
