@@ -19,7 +19,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: opentelemetry
   syncPolicy:
     automated:
       prune: true
