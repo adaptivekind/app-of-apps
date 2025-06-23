@@ -38,10 +38,26 @@ spec:
       k8sattributes:
         auth_type: serviceAccount
         passthrough: false
+        filter:
+          node_from_env_var: KUBE_NODE_NAME
         extract:
           metadata:
             - k8s.pod.name
-            - k8s.namespace.name
+            - k8s.namespace.nam
+          labels:
+            - tag_name: app.label.component
+              key: app.kubernetes.io/component
+              from: pod
+        otel_annotations: true
+        pod_association:
+          - sources:
+              - from: resource_attribute
+                name: k8s.pod.ip
+          - sources:
+              - from: resource_attribute
+                name: k8s.pod.uid
+          - sources:
+              - from: connection
 
     exporters:
       debug: {}
