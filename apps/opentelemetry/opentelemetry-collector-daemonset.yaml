@@ -16,6 +16,7 @@ spec:
           - node
           - pod
           - container
+          - volume
       filelog:
         include:
           - /var/log/pods/*/*/*.log
@@ -28,6 +29,12 @@ spec:
           - type: container
             id: container-parser
 
+    processors:
+      batch/metrics:
+        send_batch_max_size: 1000
+        send_batch_size: 500
+        timeout: 180s
+
     exporters:
       debug:
         verbosity: detailed
@@ -38,15 +45,19 @@ spec:
         tls:
           insecure: true
       prometheusremotewrite:
-        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/api/v1/write
-        tls:
-          insecure: true
+        remote_write_queue:
+          enabled: true
+          num_consumers: 1
+          queue_size: 500
+        endpoint: prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/api/v1/write
 
     service:
       pipelines:
         metrics:
           exporters:
             - prometheusremotewrite
+          processors:
+            - batch
           receivers:
             - kubeletstats
         logs:
