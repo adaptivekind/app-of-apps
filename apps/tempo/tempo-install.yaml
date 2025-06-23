@@ -18,7 +18,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: tempo
   syncPolicy:
     automated:
       prune: true
