@@ -7,7 +7,7 @@ spec:
   sources:
     - chart: tempo
       repoURL: https://grafana.github.io/helm-charts
-      targetRevision: "*"
+      targetRevision: 1.23.1
       helm:
         releaseName: tempo
         valueFiles:

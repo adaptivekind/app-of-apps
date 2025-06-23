@@ -9,7 +9,7 @@ spec:
   sources:
     - chart: opentelemetry-operator
       repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
-      targetRevision: "*"
+      targetRevision: 0.90.3 
       helm:
         valueFiles:
           - $values/apps/opentelemetry/values.yaml
