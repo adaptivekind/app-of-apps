@@ -3,6 +3,7 @@ kind: GrafanaDatasource
 metadata:
   name: prometheus-grafana-datasource
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
