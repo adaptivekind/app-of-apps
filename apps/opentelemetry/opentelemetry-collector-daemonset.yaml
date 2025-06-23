@@ -41,7 +41,7 @@ spec:
         extract:
           metadata:
             - k8s.pod.name
-            - k8s.namespace.nam
+            - k8s.namespace.name
           labels:
             - tag_name: app.label.component
               key: app.kubernetes.io/component
