@@ -7,15 +7,30 @@ spec:
   mode: daemonset
   config:
     receivers:
-      otlp:
-        protocols:
-          grpc:
-            endpoint: 127.0.0.1:4317
-          http:
-            endpoint: 127.0.0.1:4318
+      kubeletstats:
+        collection_interval: 10s
+        auth_type: 'serviceAccount'
+        endpoint: '${env:K8S_NODE_NAME}:10250'
+        insecure_skip_verify: true
+        metric_groups:
+          - node
+          - pod
+          - container
+    filelog:
+      include:
+        - /var/log/pods/*/*/*.log
+      exclude:
+        - /var/log/pods/*/otel-collector/*.log
+      start_at: end
+      include_file_path: true
+      include_file_name: false
+      operators:
+        - type: container
+          id: container-parser
 
     exporters:
-      debug: {}
+      debug:
+        verbosity: detailed
 
     service:
       pipelines:
@@ -23,14 +38,9 @@ spec:
           exporters:
             - debug
           receivers:
-            - otlp
+            - kubeletstats
         logs:
           exporters:
             - debug
           receivers:
-            - otlp
-        traces:
-          exporters:
-            - debug
-          receivers:
-            - otlp
+            - filelog
