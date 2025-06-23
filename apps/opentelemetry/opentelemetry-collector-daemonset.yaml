@@ -36,7 +36,7 @@ spec:
         send_batch_size: 200
         timeout: 180s
       k8sattributes:
-        auth_type: "serviceAccount"
+        auth_type: serviceAccount
         passthrough: false
         extract:
           metadata:
