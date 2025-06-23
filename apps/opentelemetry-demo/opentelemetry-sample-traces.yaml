@@ -4,7 +4,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: sample-traces
-  namespace: monitoring
+  namespace: opentelemetry-demo
 spec:
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1

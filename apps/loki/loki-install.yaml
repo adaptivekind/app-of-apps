@@ -18,7 +18,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: loki
   syncPolicy:
     automated:
       prune: true

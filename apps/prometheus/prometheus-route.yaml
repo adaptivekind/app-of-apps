@@ -21,7 +21,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus-route
-  namespace: monitoring
+  namespace: prometheus
 spec:
   entryPoints:
     - websecure
@@ -47,7 +47,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus-http-route
-  namespace: monitoring
+  namespace: prometheus
 spec:
   entryPoints:
     - web

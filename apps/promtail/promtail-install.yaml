@@ -20,7 +20,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: promtail
   syncPolicy:
     automated:
       prune: true

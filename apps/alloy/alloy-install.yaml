@@ -15,7 +15,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: alloy
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

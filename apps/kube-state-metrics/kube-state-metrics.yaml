@@ -13,7 +13,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: kube-state-metrics
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
