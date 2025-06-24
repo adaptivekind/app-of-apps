@@ -13,12 +13,6 @@ spec:
           cpu:
           memory:
 
-      hostmetrics/disk:
-        collection_interval: 5m
-        scrapers:
-          disk:
-          filesystem:
-
       kubeletstats:
         collection_interval: 30s
         auth_type: serviceAccount
@@ -106,6 +100,7 @@ spec:
             - k8sattributes
           receivers:
             - kubeletstats
+            - hostmetrics
         # logs:
         #   exporters:
         #     - otlphttp/victoriametrics
