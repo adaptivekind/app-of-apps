@@ -7,8 +7,20 @@ spec:
   mode: daemonset
   config:
     receivers:
+      hostmetrics:
+        collection_interval: 30s
+        scrapers:
+          cpu:
+          memory:
+
+      hostmetrics/disk:
+        collection_interval: 5m
+        scrapers:
+          disk:
+          filesystem:
+
       kubeletstats:
-        collection_interval: 10s
+        collection_interval: 30s
         auth_type: serviceAccount
         endpoint: '${env:K8S_NODE_NAME}:10250'
         insecure_skip_verify: true
@@ -17,6 +29,7 @@ spec:
           - pod
           - container
           - volume
+
       filelog:
         include:
           - /var/log/pods/*/*/*.log
