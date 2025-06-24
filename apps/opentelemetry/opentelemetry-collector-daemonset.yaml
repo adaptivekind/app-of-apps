@@ -120,19 +120,22 @@ spec:
         send_metadata: true
         endpoint: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
         auth:
-          authenticator: basicauth/grafana
+          authenticator: basicauth
 
     extensions:
-      basicauth/grafana:
+      basicauth:
         client_auth:
           username: "${REMOTE_PROMETHEUS_WRITE_USERNAME}"
           password: "${REMOTE_PROMETHEUS_WRITE_PASSWORD}"
 
     service:
+      extensions:
+        - basicauth
       pipelines:
         metrics:
           exporters:
             - prometheusremotewrite
+            - prometheusremotewrite/grafana
           processors:
             - batch/metrics
             - k8sattributes
