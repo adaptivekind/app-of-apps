@@ -16,7 +16,6 @@ spec:
           network: {}
           paging: {}
           processes: {}
-          process: {}
 
       hostmetrics/slow:
         collection_interval: 5m
