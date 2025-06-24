@@ -84,20 +84,20 @@ prometheus:
     scrapeInterval: 60s
     enableAdminAPI: true
     enableRemoteWriteReceiver: true
-    remoteWrite:
-      - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
-        basicAuth:
-          username:
-            name: remote-prometheus-write-credentials
-            key: username
-          password:
-            name: remote-prometheus-write-credentials
-            key: password
-        queueConfig:
-          maxBackoff: "60s"
-          sampleAgeLimit: "1h"
-          maxSamplesPerSend: 5000
-        writeRelabelConfigs:
-          - sourceLabels: [__name__]
-            regex: '(node_cpu|node_memory|container_cpu|container_memory)_.+'
-            action: keep
+    # remoteWrite:
+    #   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+    #     basicAuth:
+    #       username:
+    #         name: remote-prometheus-write-credentials
+    #         key: username
+    #       password:
+    #         name: remote-prometheus-write-credentials
+    #         key: password
+    #     queueConfig:
+    #       maxBackoff: "60s"
+    #       sampleAgeLimit: "1h"
+    #       maxSamplesPerSend: 5000
+    #     writeRelabelConfigs:
+    #       - sourceLabels: [__name__]
+    #         regex: '(node_cpu|node_memory|container_cpu|container_memory)_.+'
+    #         action: keep
