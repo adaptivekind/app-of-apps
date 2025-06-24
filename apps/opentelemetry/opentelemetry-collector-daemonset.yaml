@@ -11,8 +11,20 @@ spec:
         collection_interval: 30s
         scrapers:
           cpu: {}
+          load: {}
           memory: {}
+          network: {}
+          paging: {}
+          processes: {}
+          process: {}
 
+      hostmetrics/slow:
+        collection_interval: 5m
+        scrapers:
+          disk: {}
+          filesystem: {}
+          system: {}
+      
       kubeletstats:
         collection_interval: 30s
         auth_type: serviceAccount
@@ -101,6 +113,7 @@ spec:
           receivers:
             - kubeletstats
             - hostmetrics
+            - hostmetrics/slow
         # logs:
         #   exporters:
         #     - otlphttp/victoriametrics
