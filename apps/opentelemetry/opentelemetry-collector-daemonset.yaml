@@ -12,7 +12,14 @@ spec:
         scrapers:
           cpu: {}
           load: {}
-          memory: {}
+          memory:
+            metrics:
+              system.linux.memory.available:
+                enabled: true
+              system.memory.limit:
+                enabled: true
+              system.memory.utilization:
+                enabled: true
           network: {}
           paging: {}
           processes: {}
