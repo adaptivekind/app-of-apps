@@ -7,6 +7,12 @@ spec:
   mode: daemonset
   config:
     receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: ${env:HOST_IP}:4317
+          http:
+            endpoint: ${env:HOST_IP}:4318
       hostmetrics:
         collection_interval: 30s
         scrapers:
@@ -140,6 +146,7 @@ spec:
             - batch/metrics
             - k8sattributes
           receivers:
+            - otlp
             - kubeletstats
             - hostmetrics
             - hostmetrics/slow
