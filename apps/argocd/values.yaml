@@ -11,6 +11,8 @@ applicationSet:
 controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
+  podAnnotations:
+    sidecar.opentelemetry.io/inject: opentelemetry/prometheus-sidecar
   metrics:
     enabled: true
   # extraArgs:
