@@ -20,9 +20,7 @@ spec:
       debug:
         verbosity: detailed
       otlp/grpc:
-        endpoint: http://otel-collector.opentelemetry.svc.cluster.local:4317
-        tls:
-          insecure: true
+        endpoint: otel-collector.opentelemetry.svc.cluster.local:4317
 
     service:
       pipelines:
