@@ -25,6 +25,9 @@ spec:
 
     service:
       pipelines:
-        traces:
-          receivers: [prometheus]
-          exporters: [debug, otlp/grpc]
+        metrics:
+          receivers: 
+            - prometheus
+          exporters:
+            - debug
+            - otlp/grpc
