@@ -36,6 +36,8 @@ repoServer:
     sidecar.opentelemetry.io/inject: opentelemetry/prometheus-sidecar
   metrics:
     enabled: true
+  containerPorts:
+    metrics: 8082
 server:
   metrics:
     enabled: false
