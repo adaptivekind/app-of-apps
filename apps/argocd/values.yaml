@@ -32,6 +32,8 @@ redis:
       labels:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
+  podAnnotations:
+    sidecar.opentelemetry.io/inject: opentelemetry/prometheus-sidecar
   metrics:
     enabled: true
 server:
