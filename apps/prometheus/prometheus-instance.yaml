@@ -4,3 +4,6 @@ metadata:
   name: prometheus
 spec:
   serviceAccountName: prometheus
+  scrapeInterval: 60s
+  enableAdminAPI: true
+  enableRemoteWriteReceiver: true
