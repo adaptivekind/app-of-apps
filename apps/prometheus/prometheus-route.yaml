@@ -29,7 +29,7 @@ spec:
     - match: HostRegexp(`prometheus.{domain:[a-z\.]+}`)
       kind: Rule
       services:
-        - name: prometheus-kube-prometheus-prometheus
+        - name: prometheus-operated
           port: 9090
   tls:
     secretName: prometheus-route-tls
@@ -55,7 +55,7 @@ spec:
     - match: HostRegexp(`prometheus.{domain:[a-z\.]+}`)
       kind: Rule
       services:
-        - name: prometheus-kube-prometheus-prometheus
+        - name: prometheus-operated
           port: 9090
       middlewares:
         - name: redirect-to-https
