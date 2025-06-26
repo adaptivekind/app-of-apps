@@ -140,7 +140,7 @@ spec:
       pipelines:
         metrics:
           exporters:
-            # - prometheusremotewrite
+            - prometheusremotewrite
             - prometheusremotewrite/grafana
           processors:
             - batch/metrics

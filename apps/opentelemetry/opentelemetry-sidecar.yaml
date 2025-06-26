@@ -20,7 +20,7 @@ spec:
       debug:
         verbosity: detailed
       otlp/grpc:
-        endpoint: otel-gatway.otel.svc.cluster.local:4317
+        endpoint: otel-gatway-collector.otel.svc.cluster.local:4317
         tls:
           insecure: true
 
