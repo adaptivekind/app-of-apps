@@ -11,3 +11,13 @@ repos:
         args:
           - --allow-multiple-documents
       - id: check-added-large-files
+  - repo: local
+    hooks:
+      - id: kubeconform
+        name: check for compliant kubernetes resources
+        description: Checks kubernetes resources are compliant
+        entry: ./pre-commit-kubeconform.sh
+        language: system
+        files: ^apps/
+        types:
+          - yaml
