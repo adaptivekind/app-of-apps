@@ -76,10 +76,11 @@ kubeApiServer:
         regex: 'workqueue_.+'
         sourceLabels: [__name__]
 nodeExporter:
-  enabled: true
+  enabled: false
 defaultRules:
   create: false
 prometheus:
+  enabled: false
   prometheusSpec:
     scrapeInterval: 60s
     enableAdminAPI: true
