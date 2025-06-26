@@ -79,6 +79,8 @@ nodeExporter:
   enabled: false
 defaultRules:
   create: false
+kubernetesServiceMonitors:
+  enabled: false
 prometheus:
   enabled: false
   prometheusSpec:
