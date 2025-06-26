@@ -10,7 +10,7 @@ spec:
   datasource:
     name: prometheus
     type: prometheus
-    url: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+    url: http://prometheus-operated.prometheus.svc.cluster.local:9090
     access: proxy
     isDefault: true
     jsonData:
