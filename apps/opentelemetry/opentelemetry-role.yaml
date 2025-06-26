@@ -25,5 +25,5 @@ roleRef:
   name: otel-gatweay-collector
 subjects:
   - kind: ServiceAccount
-    name: otel-gateway
+    name: otel-gateway-collector
     namespace: otel
