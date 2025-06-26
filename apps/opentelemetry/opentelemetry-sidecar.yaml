@@ -14,8 +14,6 @@ spec:
               static_configs:
                 - targets: ['0.0.0.0:8082']
 
-    processors: {}
-
     exporters:
       debug:
         verbosity: detailed
@@ -27,7 +25,7 @@ spec:
     service:
       pipelines:
         metrics:
-          receivers: 
+          receivers:
             - prometheus
           exporters:
             - otlp/grpc

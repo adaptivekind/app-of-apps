@@ -46,4 +46,3 @@ fi
 
 echo "Certificates and keys created in ${CERTS_DIR}"
 ls -l ${CERTS_DIR}
-

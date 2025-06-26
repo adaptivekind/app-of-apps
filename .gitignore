@@ -1,3 +1,4 @@
 *.pem
 *.key
 .envrc
+.vscode

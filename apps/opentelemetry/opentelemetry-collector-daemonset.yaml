@@ -37,7 +37,7 @@ spec:
           disk: {}
           filesystem: {}
           system: {}
-      
+
       kubeletstats:
         collection_interval: 30s
         auth_type: serviceAccount
@@ -172,4 +172,3 @@ spec:
       secretKeyRef:
         key: password
         name: remote-prometheus-write-credentials
-

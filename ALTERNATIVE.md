@@ -62,6 +62,6 @@ Verify ArgoCD cert against CA
 
 kubectl -n cert-manager get secret root-secret -o jsonpath='{.data.ca\.crt}' | base64 -d > /tmp/ca.crt
 kubectl -n argocd get secret argocd-server-tls -o jsonpath='{.data.tls\.crt}' | base64 -d > /tmp/argocd.crt
- 
-openssl verify -CAfile /tmp/ca.crt /tmp/argocd.crt 
+
+openssl verify -CAfile /tmp/ca.crt /tmp/argocd.crt
 ```

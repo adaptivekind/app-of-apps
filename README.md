@@ -107,7 +107,7 @@ Install `direnv`
 brew install direnv
 ```
 
-Set `GRAFANA_ADMIN_PASSWORD` in `.envrc` file 
+Set `GRAFANA_ADMIN_PASSWORD` in `.envrc` file
 
 ```txt
 export GRAFANA_ADMIN_PASSWORD=super-secret
