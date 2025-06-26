@@ -12,7 +12,7 @@ controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
   podAnnotations:
-    sidecar.opentelemetry.io/inject: opentelemetry/prometheus-sidecar
+    sidecar.opentelemetry.io/inject: otel/otel-sidecar
   metrics:
     enabled: true
   # extraArgs:
@@ -33,7 +33,7 @@ redis:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
   podAnnotations:
-    sidecar.opentelemetry.io/inject: opentelemetry/prometheus-sidecar
+    sidecar.opentelemetry.io/inject: otel/otel-sidecar
   metrics:
     enabled: true
   containerPorts:

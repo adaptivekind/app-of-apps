@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: opentelemetry-operator-install
+  name: otel-operator-install
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -19,7 +19,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: opentelemetry
+    namespace: otel
   syncPolicy:
     automated:
       prune: true

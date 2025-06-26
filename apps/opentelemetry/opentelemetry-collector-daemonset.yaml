@@ -1,8 +1,8 @@
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
-  name: otel
-  namespace: opentelemetry
+  name: otel-gateway
+  namespace: otel
 spec:
   mode: daemonset
   config:
