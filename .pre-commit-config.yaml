@@ -19,5 +19,6 @@ repos:
         entry: ./pre-commit-kubeconform.sh
         language: system
         files: ^apps/
+        exclude: values.yaml
         types:
           - yaml

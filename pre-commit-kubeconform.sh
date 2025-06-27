@@ -7,10 +7,7 @@ fi
 
 filename=$1
 
-kubeconform -summary -verbose \
+kubeconform -verbose \
   -schema-location default -schema-location \
   'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
   $filename
-
-
-exit $?
