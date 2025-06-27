@@ -5,6 +5,14 @@ metadata:
   namespace: otel
 spec:
   mode: daemonset
+  volumeMounts:
+  - mountPath: /var/log/pods
+    name: varlogpods
+    readOnly: true
+  volumes:
+  - hostPath:
+      path: /var/log/pods
+    name: varlogpods
   config:
     receivers:
       otlp:
@@ -150,11 +158,11 @@ spec:
             - kubeletstats
             - hostmetrics
             - hostmetrics/slow
-        # logs:
-        #   exporters:
-        #     - otlphttp/victoriametrics
-        #   receivers:
-        #     - filelog
+        logs:
+          exporters:
+            - otlphttp/victoriametrics
+          receivers:
+            - filelog
       telemetry:
         logs:
           level: INFO
