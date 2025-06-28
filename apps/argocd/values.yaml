@@ -25,6 +25,8 @@ dex:
   enabled: false
   metrics:
     enabled: false
+notifcations:
+  enabled: false
 redis:
   metrics:
     enabled: false
