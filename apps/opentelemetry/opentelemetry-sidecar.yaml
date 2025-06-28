@@ -32,7 +32,7 @@ spec:
         metrics:
           receivers:
             - prometheus
-          prometheus:
-            - debug
+          processors:
+            - k8sattributes
           exporters:
             - otlp/grpc
