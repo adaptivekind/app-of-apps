@@ -1,0 +1,33 @@
+# https://github.com/DRuggeri/nut_exporter
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nut-deployment
+  namespace: power
+  labels:
+    app: nut
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nut
+  template:
+    metadata:
+      labels:
+        app: nut
+    spec:
+      hostNetwork: true
+      containers:
+      - name: nut
+        image: druggeri/nut_exporter:3.2
+        ports:
+        - containerPort: 9199
+        env:
+          - name: NUT_EXPORTER_SERVER
+            value: 0.0.0.0
+          - name: NUT_EXPORTER_VARIABLES
+            value: >
+              battery.charge,
+              ups.load,
+              ups.realpower,
+              ups.status
