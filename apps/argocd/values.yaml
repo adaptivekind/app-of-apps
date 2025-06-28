@@ -1,7 +1,7 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
 global:
   logging:
-    level: info
+    level: warn
 applicationSet:
   metrics:
     enabled: false
@@ -11,10 +11,10 @@ applicationSet:
 controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
-  podAnnotations:
-    sidecar.opentelemetry.io/inject: otel/otel-sidecar
+  # podAnnotations:
+  #   sidecar.opentelemetry.io/inject: otel/otel-sidecar
   metrics:
-    enabled: true
+    enabled: false
   # extraArgs:
   #   - --app-resync 3600
   #   - --app-resync-jitter 300
@@ -34,10 +34,10 @@ redis:
       labels:
         "app.kubernetes.io/name": "argocd-redis-metrics"
 repoServer:
-  podAnnotations:
-    sidecar.opentelemetry.io/inject: otel/otel-sidecar
+  # podAnnotations:
+  #   sidecar.opentelemetry.io/inject: otel/otel-sidecar
   metrics:
-    enabled: true
+    enabled: false
   containerPorts:
     metrics: 8082
 server:
