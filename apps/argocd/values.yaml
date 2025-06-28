@@ -21,6 +21,8 @@ controller:
   env:
     - name: ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT
       value: "360s"
+    - name: GOGC
+      value: "50"
 dex:
   enabled: false
   metrics:
@@ -40,9 +42,15 @@ repoServer:
     enabled: false
   containerPorts:
     metrics: 8082
+  env:
+    - name: GOGC
+      value: "50"
 server:
   metrics:
     enabled: false
+  env:
+    - name: GOGC
+      value: "50"
 configs:
   cm:
     timeout.reconciliation: 24h
