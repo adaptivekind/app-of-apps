@@ -15,13 +15,20 @@ spec:
     metadata:
       labels:
         app: nut
+      annotations:
+        sidecar.opentelemetry.io/inject: otel/otel-sidecar
     spec:
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: nut
         image: druggeri/nut_exporter:3.2
+        args:
+          - --web.listen-address=:8082
+          - --web.telemetry-path=/metrics
+          - --web.exporter-telemetry-path=/self-metrics
         ports:
-        - containerPort: 9199
+        - containerPort: 8082
         env:
           - name: NUT_EXPORTER_SERVER
             value: 0.0.0.0
