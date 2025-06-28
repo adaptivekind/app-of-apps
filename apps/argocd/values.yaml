@@ -11,10 +11,10 @@ applicationSet:
 controller:
   # heartbeatTime: 20
   # revisionHistoryLimit: 3
-  # podAnnotations:
-  #   sidecar.opentelemetry.io/inject: otel/otel-sidecar
+  podAnnotations:
+    sidecar.opentelemetry.io/inject: otel/otel-sidecar
   metrics:
-    enabled: false
+    enabled: true
   # extraArgs:
   #   - --app-resync 3600
   #   - --app-resync-jitter 300
