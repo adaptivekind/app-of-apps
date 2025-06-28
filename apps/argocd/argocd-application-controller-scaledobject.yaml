@@ -7,13 +7,13 @@ spec:
    scaleTargetRef:
       name: argocd-application-controller
       kind: StatefulSet
-   minReplicaCount: 0
+   minReplicaCount: 1
    maxReplicaCount: 1
-   cooldownPeriod: 30
+   cooldownPeriod: 1
    triggers:
    - type: cron
      metadata:
       timezone: Europe/London
-      start: 08 0 * * *         # From 8 PM
-      end: 22 0 * * *           # To 10 PM
-      desiredReplicas: "1"
+      start: 0 8 * * *         # From 8 AM
+      end: 0 22 * * *          # To 10 PM
+      desiredReplicas: "2"

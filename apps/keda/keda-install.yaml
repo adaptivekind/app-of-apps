@@ -13,7 +13,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: argocd
+    namespace: keda
   syncPolicy:
     automated:
       prune: true
