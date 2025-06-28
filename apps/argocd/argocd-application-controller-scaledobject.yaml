@@ -2,6 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
    name: argocd-application-controller-scaledobject
+   namespace: argocd
 spec:
    scaleTargetRef:
       name: argocd-application-controller
@@ -13,6 +14,6 @@ spec:
    - type: cron
      metadata:
       timezone: Europe/London
-      start: 08 * * *           # From 8 PM
+      start: 08 0 * * *         # From 8 PM
       end: 22 0 * * *           # To 10 PM
       desiredReplicas: "1"
