@@ -17,3 +17,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      # to fix metadata.annotations: Too long: must have at most 262144 bytes
+      - ServerSideApply=true
