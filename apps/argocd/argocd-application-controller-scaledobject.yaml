@@ -7,19 +7,19 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-   name: argocd-application-controller-scaledobject
-   namespace: argocd
+  name: argocd-application-controller-scaledobject
+  namespace: argocd
 spec:
-   scaleTargetRef:
-      name: argocd-application-controller
-      kind: StatefulSet
-   minReplicaCount: 1
-   maxReplicaCount: 1
-   cooldownPeriod: 1
-   triggers:
-   - type: cron
-     metadata:
-      timezone: Europe/London
-      start: 0 8 * * *         # From 8 AM
-      end: 0 22 * * *          # To 10 PM
-      desiredReplicas: "2"
+  scaleTargetRef:
+    name: argocd-application-controller
+    kind: StatefulSet
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  cooldownPeriod: 1
+  triggers:
+    - type: cron
+      metadata:
+        timezone: Europe/London
+        start: 0 8 * * * # From 8 AM
+        end: 0 0 * * * # To 12 PM
+        desiredReplicas: "1"
