@@ -1,3 +1,9 @@
+# As a an experiment with Keda I'll stop the argocd application controller
+# over night. Not a huge value in doing so, however since it has a
+# significant memory footprint (500MB) it's easy to see the signal
+# of it being scaled down and up. For this lab stack at present,
+# the only changes to git are from me and hence the application controller
+# can sleep when I sleep.
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
