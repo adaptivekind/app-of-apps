@@ -6,13 +6,13 @@ metadata:
 spec:
   mode: daemonset
   volumeMounts:
-  - mountPath: /var/log/pods
-    name: varlogpods
-    readOnly: true
+    - mountPath: /var/log/pods
+      name: varlogpods
+      readOnly: true
   volumes:
-  - hostPath:
-      path: /var/log/pods
-    name: varlogpods
+    - hostPath:
+        path: /var/log/pods
+      name: varlogpods
   config:
     receivers:
       otlp:
@@ -49,7 +49,7 @@ spec:
       kubeletstats:
         collection_interval: 30s
         auth_type: serviceAccount
-        endpoint: '${env:K8S_NODE_NAME}:10250'
+        endpoint: "${env:K8S_NODE_NAME}:10250"
         insecure_skip_verify: true
         metric_groups:
           - node
@@ -101,8 +101,7 @@ spec:
               - from: connection
 
     exporters:
-      debug: {}
-        # verbosity: detailed
+      debug: {} # verbosity: detailed
       otlphttp/victoriametrics:
         compression: gzip
         encoding: proto
@@ -170,13 +169,13 @@ spec:
           encoding: json
 
   env:
-  - name: REMOTE_PROMETHEUS_WRITE_USERNAME
-    valueFrom:
-      secretKeyRef:
-        key: username
-        name: remote-prometheus-write-credentials
-  - name: REMOTE_PROMETHEUS_WRITE_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        key: password
-        name: remote-prometheus-write-credentials
+    - name: REMOTE_PROMETHEUS_WRITE_USERNAME
+      valueFrom:
+        secretKeyRef:
+          key: username
+          name: remote-prometheus-write-credentials
+    - name: REMOTE_PROMETHEUS_WRITE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: remote-prometheus-write-credentials
