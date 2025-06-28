@@ -1,0 +1,14 @@
+# See https://github.com/coredns/coredns/issues/3600
+# Work around so the following aren't logged
+# [WANRING] No files matching import glob pattern: /etc/coredns/custom/*.override
+# [WARNING] No files matching import glob pattern: /etc/coredns/custom/*.server
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  log.override: |
+    #
+  stub.server: |
+    #
