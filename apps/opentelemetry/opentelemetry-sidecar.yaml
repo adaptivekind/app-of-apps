@@ -12,8 +12,7 @@ spec:
             - job_name: otel-sidecar
               scrape_interval: 5s
               static_configs:
-                - targets: ['0.0.0.0:8082']
-
+                - targets: ["0.0.0.0:8082"]
     exporters:
       debug:
         verbosity: detailed
@@ -21,11 +20,19 @@ spec:
         endpoint: otel-gateway-collector.otel.svc.cluster.local:4317
         tls:
           insecure: true
-
+    processors:
+      k8sattributes:
+        auth_type: serviceAccount
+        extract:
+          metadata:
+            - k8s.pod.name
+            - k8s.namespace.name
     service:
       pipelines:
         metrics:
           receivers:
             - prometheus
+          prometheus:
+            - debug
           exporters:
             - otlp/grpc
