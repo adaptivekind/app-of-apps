@@ -108,7 +108,8 @@ spec:
               - from: connection
 
     exporters:
-      debug: {} # verbosity: detailed
+      debug:
+        verbosity: detailed
       otlphttp/victoriametrics:
         compression: gzip
         encoding: proto
